@@ -44,12 +44,12 @@ interface Summary {
   by_type: { action_type: string; count: number; monthly?: number }[]
 }
 
-const STATUSES = ['proposed', 'planned', 'in_progress', 'completed', 'dismissed']
+const STATUSES = ['proposed', 'approved', 'in-progress', 'done', 'dismissed']
 const STATUS_TONE: Record<string, 'slate' | 'blue' | 'amber' | 'green' | 'rose'> = {
   proposed: 'slate',
-  planned: 'blue',
-  in_progress: 'amber',
-  completed: 'green',
+  approved: 'blue',
+  'in-progress': 'amber',
+  done: 'green',
   dismissed: 'rose',
 }
 const RISK_LEVELS = ['low', 'medium', 'high']
@@ -257,7 +257,7 @@ export default function WorksheetPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Stat label="Total Recoverable / mo" value={money(summary?.total_monthly)} tone="cyan" />
             <Stat label="Annualized" value={money(summary?.total_annual)} tone="green" />
-            <Stat label="Open Actions" value={actions.filter((a) => !['completed', 'dismissed'].includes(a.status)).length} hint={`${actions.length} total`} />
+            <Stat label="Open Actions" value={actions.filter((a) => !['done', 'dismissed'].includes(a.status)).length} hint={`${actions.length} total`} />
             <Stat label="Filtered Recoverable / mo" value={money(filteredMonthly)} hint={`${filtered.length} shown`} />
           </div>
 
