@@ -19,7 +19,7 @@ function send(method: string, path: string, body?: unknown) {
   return req(path, {
     method,
     headers: { 'Content-Type': 'application/json' },
-    body: body === undefined ? undefined : JSON.stringify(body),
+    body: JSON.stringify(body ?? {}),
   })
 }
 
