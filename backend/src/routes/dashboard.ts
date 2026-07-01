@@ -54,6 +54,12 @@ router.get('/', async (c) => {
   const realized = userId
     ? await db.select().from(realized_savings).where(eq(realized_savings.user_id, userId))
     : await db.select().from(realized_savings)
+  const findingRows = userId
+    ? await db.select().from(findings).where(eq(findings.user_id, userId))
+    : await db.select().from(findings)
+  const accountRows = userId
+    ? await db.select().from(accounts).where(eq(accounts.user_id, userId))
+    : await db.select().from(accounts)
 
   const totalSpend = assets.reduce((s, a) => s + (a.monthly_cost ?? 0), 0)
 
@@ -101,6 +107,14 @@ router.get('/', async (c) => {
       done_action_count: doneActions.length,
       recoverable_pct_of_spend:
         totalSpend > 0 ? round2((recoverableMonthly / totalSpend) * 100) : 0,
+      // Aliases matching the dashboard page's field names.
+      total_spend: round2(totalSpend),
+      total_recoverable: round2(recoverableMonthly),
+      recovery_rate: recoveryRate,
+      findings_count: findingRows.length,
+      actions_count: openActions.length,
+      accounts_count: accountRows.length,
+      assets_count: assets.length,
     },
     top_opportunities: topOpportunities,
   })
