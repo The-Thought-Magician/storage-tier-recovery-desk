@@ -185,7 +185,7 @@ export default function AssetDetailPage() {
   if (error || !data?.asset) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/inventory" className="text-sm text-cyan-400 hover:text-cyan-300">
+        <Link href="/dashboard/inventory" className="text-sm text-lime-400 hover:text-lime-300">
           ← Back to inventory
         </Link>
         <EmptyState
@@ -207,7 +207,7 @@ export default function AssetDetailPage() {
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/dashboard/inventory" className="text-sm text-cyan-400 hover:text-cyan-300">
+        <Link href="/dashboard/inventory" className="text-sm text-lime-400 hover:text-lime-300">
           ← Back to inventory
         </Link>
       </div>
@@ -215,14 +215,14 @@ export default function AssetDetailPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="text-xl font-semibold text-slate-100">{asset.name}</h1>
+            <h1 className="text-xl font-semibold text-zinc-100">{asset.name}</h1>
             <Badge tone={tierTone[asset.current_tier] ?? 'slate'}>{asset.current_tier}</Badge>
             <Badge tone="default" className="capitalize">
               {asset.asset_type}
             </Badge>
             {access && <Badge tone={tempTone[access.temperature] ?? 'slate'}>{access.temperature}</Badge>}
           </div>
-          <p className="mt-1 break-all text-sm text-slate-500">{asset.external_id || asset.id}</p>
+          <p className="mt-1 break-all text-sm text-zinc-500">{asset.external_id || asset.id}</p>
         </div>
       </div>
 
@@ -237,7 +237,7 @@ export default function AssetDetailPage() {
         {/* Properties */}
         <Card className="lg:col-span-1">
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Properties</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">Properties</h2>
           </CardHeader>
           <CardBody>
             <dl className="space-y-3 text-sm">
@@ -260,7 +260,7 @@ export default function AssetDetailPage() {
         {/* Access */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Access pattern</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">Access pattern</h2>
           </CardHeader>
           <CardBody>
             {access ? (
@@ -296,8 +296,8 @@ export default function AssetDetailPage() {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-slate-200">Candidate actions</h2>
-            <span className="text-xs text-slate-500">{findings.length} finding(s)</span>
+            <h2 className="text-sm font-semibold text-zinc-200">Candidate actions</h2>
+            <span className="text-xs text-zinc-500">{findings.length} finding(s)</span>
           </div>
         </CardHeader>
         <CardBody className="p-0">
@@ -330,8 +330,8 @@ export default function AssetDetailPage() {
                 {findings.map((f) => (
                   <TR key={f.id}>
                     <TD>
-                      <div className="font-medium text-slate-200">{f.title}</div>
-                      {f.detail && <div className="text-xs text-slate-500">{f.detail}</div>}
+                      <div className="font-medium text-zinc-200">{f.title}</div>
+                      {f.detail && <div className="text-xs text-zinc-500">{f.detail}</div>}
                       <Badge tone="violet" className="mt-1">
                         {f.finding_type}
                       </Badge>
@@ -339,11 +339,11 @@ export default function AssetDetailPage() {
                     <TD className="capitalize">{f.recommended_action?.replace(/-/g, ' ') || '—'}</TD>
                     <TD>{f.target_tier ? <Badge tone={tierTone[f.target_tier] ?? 'slate'}>{f.target_tier}</Badge> : '—'}</TD>
                     <TD className="text-right tabular-nums text-emerald-300">{fmtUsd(f.monthly_savings)}</TD>
-                    <TD className="text-right tabular-nums text-slate-400">{fmtUsd(f.annual_savings)}</TD>
+                    <TD className="text-right tabular-nums text-zinc-400">{fmtUsd(f.annual_savings)}</TD>
                     <TD className="text-right tabular-nums">
                       {f.effort_score ?? '—'} / {f.risk_score ?? '—'}
                     </TD>
-                    <TD className="text-right tabular-nums text-cyan-300">{(f.priority_score ?? 0).toFixed(1)}</TD>
+                    <TD className="text-right tabular-nums text-lime-300">{(f.priority_score ?? 0).toFixed(1)}</TD>
                   </TR>
                 ))}
               </TBody>
@@ -356,7 +356,7 @@ export default function AssetDetailPage() {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-slate-200">Tags</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">Tags</h2>
             {tagMsg && (
               <span className={`text-xs ${tagMsg.includes('saved') ? 'text-emerald-400' : 'text-rose-400'}`}>{tagMsg}</span>
             )}
@@ -364,18 +364,18 @@ export default function AssetDetailPage() {
         </CardHeader>
         <CardBody className="space-y-4">
           {tags.length === 0 ? (
-            <p className="text-sm text-slate-500">No tags yet. Add cost-allocation tags below.</p>
+            <p className="text-sm text-zinc-500">No tags yet. Add cost-allocation tags below.</p>
           ) : (
             <div className="flex flex-wrap gap-2">
               {tags.map((t) => (
                 <span
                   key={t.key}
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-800/60 px-3 py-1.5 text-sm text-slate-200"
+                  className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800/60 px-3 py-1.5 text-sm text-zinc-200"
                 >
-                  <span className="text-slate-400">{t.key}</span>
-                  <span className="text-slate-600">=</span>
-                  <span>{t.value || <em className="text-slate-600">empty</em>}</span>
-                  <button onClick={() => removeTag(t.key)} className="text-slate-500 hover:text-rose-400" aria-label={`Remove ${t.key}`}>
+                  <span className="text-zinc-400">{t.key}</span>
+                  <span className="text-zinc-600">=</span>
+                  <span>{t.value || <em className="text-zinc-600">empty</em>}</span>
+                  <button onClick={() => removeTag(t.key)} className="text-zinc-500 hover:text-rose-400" aria-label={`Remove ${t.key}`}>
                     ✕
                   </button>
                 </span>
@@ -385,23 +385,23 @@ export default function AssetDetailPage() {
 
           <div className="flex flex-wrap items-end gap-2">
             <div>
-              <label className="mb-1 block text-xs text-slate-500">Key</label>
+              <label className="mb-1 block text-xs text-zinc-500">Key</label>
               <input
                 value={newKey}
                 onChange={(e) => setNewKey(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && addTag()}
                 placeholder="environment"
-                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs text-slate-500">Value</label>
+              <label className="mb-1 block text-xs text-zinc-500">Value</label>
               <input
                 value={newValue}
                 onChange={(e) => setNewValue(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && addTag()}
                 placeholder="production"
-                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             <Button variant="secondary" onClick={addTag} disabled={!newKey.trim()}>
@@ -420,8 +420,8 @@ export default function AssetDetailPage() {
 function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="flex items-start justify-between gap-3">
-      <dt className="text-slate-500">{label}</dt>
-      <dd className="text-right text-slate-200">{value}</dd>
+      <dt className="text-zinc-500">{label}</dt>
+      <dd className="text-right text-zinc-200">{value}</dd>
     </div>
   )
 }
@@ -438,14 +438,14 @@ function Mini({
   const accentText: Record<string, string> = {
     rose: 'text-rose-300',
     amber: 'text-amber-300',
-    blue: 'text-blue-300',
-    cyan: 'text-cyan-300',
-    slate: 'text-slate-300',
+    blue: 'text-lime-300',
+    cyan: 'text-lime-300',
+    slate: 'text-zinc-300',
   }
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-2.5">
-      <div className="text-[11px] uppercase tracking-wide text-slate-500">{label}</div>
-      <div className={`mt-1 text-lg font-semibold capitalize tabular-nums ${accent ? accentText[accent] : 'text-slate-100'}`}>{value}</div>
+    <div className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2.5">
+      <div className="text-[11px] uppercase tracking-wide text-zinc-500">{label}</div>
+      <div className={`mt-1 text-lg font-semibold capitalize tabular-nums ${accent ? accentText[accent] : 'text-zinc-100'}`}>{value}</div>
     </div>
   )
 }

@@ -202,7 +202,7 @@ export default function IngestPage() {
         <Card className="border-rose-500/30">
           <CardBody>
             <h2 className="text-base font-semibold text-rose-300">Could not load ingestion</h2>
-            <p className="mt-1 text-sm text-slate-400">{error}</p>
+            <p className="mt-1 text-sm text-zinc-400">{error}</p>
             <Button className="mt-4" variant="secondary" onClick={load}>
               Retry
             </Button>
@@ -219,8 +219,8 @@ export default function IngestPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-100">Ingest</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Ingest</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Upload storage inventory exports (CSV / JSON) or seed a sample estate, then review the run ledger.
           </p>
         </div>
@@ -261,12 +261,12 @@ export default function IngestPage() {
         {/* Upload */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Upload inventory</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">Upload inventory</h2>
           </CardHeader>
           <CardBody className="space-y-3">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <label className="block">
-                <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Target account</span>
+                <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Target account</span>
                 <select
                   value={accountId}
                   onChange={(e) => setAccountId(e.target.value)}
@@ -282,7 +282,7 @@ export default function IngestPage() {
                 </select>
               </label>
               <label className="block">
-                <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Source format</span>
+                <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Source format</span>
                 <select value={source} onChange={(e) => setSource(e.target.value)} className={inputCls}>
                   <option value="csv">CSV</option>
                   <option value="json">JSON</option>
@@ -296,7 +296,7 @@ export default function IngestPage() {
                 type="file"
                 accept=".csv,.json,text/csv,application/json"
                 onChange={(e) => e.target.files?.[0] && onFile(e.target.files[0])}
-                className="block text-xs text-slate-400 file:mr-3 file:rounded-lg file:border-0 file:bg-slate-800 file:px-3 file:py-1.5 file:text-xs file:text-slate-200 hover:file:bg-slate-700"
+                className="block text-xs text-zinc-400 file:mr-3 file:rounded-lg file:border-0 file:bg-zinc-800 file:px-3 file:py-1.5 file:text-xs file:text-zinc-200 hover:file:bg-zinc-700"
               />
               <Button variant="ghost" className="text-xs" onClick={() => { setRaw(SAMPLE_ASSETS); setSource('csv') }}>
                 Load example CSV
@@ -304,7 +304,7 @@ export default function IngestPage() {
             </div>
 
             <label className="block">
-              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Rows ({source.toUpperCase()})
               </span>
               <textarea
@@ -317,7 +317,7 @@ export default function IngestPage() {
             </label>
 
             <div className="flex items-center justify-between">
-              <div className="text-xs text-slate-500">
+              <div className="text-xs text-zinc-500">
                 {parsedRows.err ? (
                   <span className="text-rose-300">{parsedRows.err}</span>
                 ) : (
@@ -336,14 +336,14 @@ export default function IngestPage() {
         {/* Seed */}
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Seed sample estate</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">Seed sample estate</h2>
           </CardHeader>
           <CardBody className="space-y-3">
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-zinc-400">
               Generate a realistic sample estate — accounts, storage assets, access patterns, and a default pricing book —
               so you can explore detectors and the recovery worksheet immediately.
             </p>
-            <ul className="space-y-1 text-xs text-slate-500">
+            <ul className="space-y-1 text-xs text-zinc-500">
               <li>• Multi-provider accounts</li>
               <li>• Object, snapshot, backup &amp; volume assets</li>
               <li>• 30/90-day access patterns</li>
@@ -359,7 +359,7 @@ export default function IngestPage() {
       {/* Run ledger */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Ingestion run ledger</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Ingestion run ledger</h2>
         </CardHeader>
         <CardBody className="p-0">
           {runs.length === 0 ? (
@@ -388,8 +388,8 @@ export default function IngestPage() {
                   const errs = errorCount(r.errors)
                   return (
                     <TR key={r.id}>
-                      <TD className="whitespace-nowrap text-xs text-slate-400">{fmtDate(r.created_at)}</TD>
-                      <TD className="text-slate-200">{accountName(r.account_id)}</TD>
+                      <TD className="whitespace-nowrap text-xs text-zinc-400">{fmtDate(r.created_at)}</TD>
+                      <TD className="text-zinc-200">{accountName(r.account_id)}</TD>
                       <TD>
                         <Badge tone="cyan">{(r.source || 'unknown').toUpperCase()}</Badge>
                       </TD>
@@ -398,7 +398,7 @@ export default function IngestPage() {
                         {Number(r.assets_upserted ?? 0).toLocaleString()}
                       </TD>
                       <TD className="text-right tabular-nums">
-                        {errs > 0 ? <span className="text-rose-300">{errs}</span> : <span className="text-slate-600">0</span>}
+                        {errs > 0 ? <span className="text-rose-300">{errs}</span> : <span className="text-zinc-600">0</span>}
                       </TD>
                       <TD>
                         <Badge tone={statusTone(r.status)}>{r.status || 'unknown'}</Badge>
@@ -416,4 +416,4 @@ export default function IngestPage() {
 }
 
 const inputCls =
-  'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none'
+  'w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none'

@@ -179,8 +179,8 @@ export default function AllocationPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Cost Allocation</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Cost Allocation</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Spend and recoverable savings broken down by tag dimension, plus untagged gaps.
           </p>
         </div>
@@ -215,8 +215,8 @@ export default function AllocationPage() {
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-sm font-semibold text-slate-200">Allocation by dimension</h2>
-            <p className="mt-0.5 text-xs text-slate-500">Choose a dimension to regroup spend.</p>
+            <h2 className="text-sm font-semibold text-zinc-200">Allocation by dimension</h2>
+            <p className="mt-0.5 text-xs text-zinc-500">Choose a dimension to regroup spend.</p>
           </div>
           <div className="flex flex-wrap gap-1.5">
             {DIMENSIONS.map((d) => (
@@ -225,8 +225,8 @@ export default function AllocationPage() {
                 onClick={() => onDimensionChange(d.value)}
                 className={`rounded-lg px-3 py-1.5 text-sm transition-colors ${
                   dimension === d.value
-                    ? 'bg-cyan-500/10 font-medium text-cyan-300'
-                    : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-100'
+                    ? 'bg-lime-500/10 font-medium text-lime-300'
+                    : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-100'
                 }`}
               >
                 {d.label}
@@ -260,17 +260,17 @@ export default function AllocationPage() {
                   const barPct = Math.round((spend / maxSpend) * 100)
                   return (
                     <TR key={r.key ?? r.value ?? i}>
-                      <TD className="font-medium text-slate-200">{rowLabel(r)}</TD>
+                      <TD className="font-medium text-zinc-200">{rowLabel(r)}</TD>
                       <TD>
-                        <div className="h-2 w-40 overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-2 w-40 overflow-hidden rounded-full bg-zinc-800">
                           <div
-                            className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-300"
+                            className="h-full rounded-full bg-gradient-to-r from-lime-500 to-lime-300"
                             style={{ width: `${barPct}%` }}
                           />
                         </div>
                       </TD>
-                      <TD className="text-right tabular-nums text-slate-400">{rowCount(r)}</TD>
-                      <TD className="text-right tabular-nums text-slate-200">{fmtUSD2(spend)}</TD>
+                      <TD className="text-right tabular-nums text-zinc-400">{rowCount(r)}</TD>
+                      <TD className="text-right tabular-nums text-zinc-200">{fmtUSD2(spend)}</TD>
                       <TD className="text-right tabular-nums text-emerald-300">
                         {fmtUSD2(recoverable)}
                       </TD>
@@ -291,8 +291,8 @@ export default function AllocationPage() {
       {/* Tags inventory */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Tag dimensions</h2>
-          <p className="mt-0.5 text-xs text-slate-500">
+          <h2 className="text-sm font-semibold text-zinc-200">Tag dimensions</h2>
+          <p className="mt-0.5 text-xs text-zinc-500">
             Distinct tag keys and values currently in use across the estate.
           </p>
         </CardHeader>
@@ -306,7 +306,7 @@ export default function AllocationPage() {
             <div className="space-y-3">
               {Array.from(tagsByKey.entries()).map(([key, values]) => (
                 <div key={key} className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
                     {key}
                   </span>
                   {values.length === 0 ? (
@@ -329,8 +329,8 @@ export default function AllocationPage() {
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-sm font-semibold text-slate-200">Untagged assets</h2>
-            <p className="mt-0.5 text-xs text-slate-500">
+            <h2 className="text-sm font-semibold text-zinc-200">Untagged assets</h2>
+            <p className="mt-0.5 text-xs text-zinc-500">
               Assets without allocation tags create cost-attribution gaps.
             </p>
           </div>
@@ -338,7 +338,7 @@ export default function AllocationPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search untagged..."
-            className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+            className="w-48 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
           />
         </CardHeader>
         <CardBody>
@@ -364,12 +364,12 @@ export default function AllocationPage() {
               <TBody>
                 {filteredUntagged.map((a) => (
                   <TR key={a.id}>
-                    <TD className="font-medium text-slate-200">{a.name ?? a.id}</TD>
+                    <TD className="font-medium text-zinc-200">{a.name ?? a.id}</TD>
                     <TD>
                       <Badge tone="slate">{a.asset_type ?? '—'}</Badge>
                     </TD>
-                    <TD className="text-slate-400">{a.provider ?? '—'}</TD>
-                    <TD className="text-slate-400">{a.region ?? '—'}</TD>
+                    <TD className="text-zinc-400">{a.provider ?? '—'}</TD>
+                    <TD className="text-zinc-400">{a.region ?? '—'}</TD>
                     <TD>
                       <Badge tone="blue">{a.current_tier ?? '—'}</Badge>
                     </TD>

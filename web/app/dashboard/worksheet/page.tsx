@@ -238,8 +238,8 @@ export default function WorksheetPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-slate-100">Recovery Worksheet</h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <h1 className="text-2xl font-semibold text-zinc-100">Recovery Worksheet</h1>
+        <p className="mt-1 text-sm text-zinc-500">
           Ranked recovery actions across your estate. Assign owners, set status, and slot actions into recovery cycles.
         </p>
       </div>
@@ -264,43 +264,43 @@ export default function WorksheetPage() {
           {summary && (summary.by_status?.length || summary.by_type?.length) ? (
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               <Card>
-                <CardHeader><h2 className="text-sm font-semibold text-slate-200">By Status</h2></CardHeader>
+                <CardHeader><h2 className="text-sm font-semibold text-zinc-200">By Status</h2></CardHeader>
                 <CardBody className="space-y-2">
                   {(summary.by_status || []).map((s) => {
                     const max = Math.max(1, ...(summary.by_status || []).map((x) => x.count))
                     return (
                       <div key={s.status}>
                         <div className="mb-1 flex justify-between text-xs">
-                          <span className="capitalize text-slate-300">{s.status.replace('_', ' ')}</span>
-                          <span className="tabular-nums text-slate-400">{s.count}{s.monthly != null ? ` · ${money(s.monthly)}/mo` : ''}</span>
+                          <span className="capitalize text-zinc-300">{s.status.replace('_', ' ')}</span>
+                          <span className="tabular-nums text-zinc-400">{s.count}{s.monthly != null ? ` · ${money(s.monthly)}/mo` : ''}</span>
                         </div>
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
-                          <div className="h-full rounded-full bg-cyan-500" style={{ width: `${(s.count / max) * 100}%` }} />
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+                          <div className="h-full rounded-full bg-lime-500" style={{ width: `${(s.count / max) * 100}%` }} />
                         </div>
                       </div>
                     )
                   })}
-                  {(!summary.by_status || summary.by_status.length === 0) && <p className="text-sm text-slate-500">No data.</p>}
+                  {(!summary.by_status || summary.by_status.length === 0) && <p className="text-sm text-zinc-500">No data.</p>}
                 </CardBody>
               </Card>
               <Card>
-                <CardHeader><h2 className="text-sm font-semibold text-slate-200">By Action Type</h2></CardHeader>
+                <CardHeader><h2 className="text-sm font-semibold text-zinc-200">By Action Type</h2></CardHeader>
                 <CardBody className="space-y-2">
                   {(summary.by_type || []).map((t) => {
                     const max = Math.max(1, ...(summary.by_type || []).map((x) => x.count))
                     return (
                       <div key={t.action_type}>
                         <div className="mb-1 flex justify-between text-xs">
-                          <span className="capitalize text-slate-300">{t.action_type.replace('_', ' ')}</span>
-                          <span className="tabular-nums text-slate-400">{t.count}{t.monthly != null ? ` · ${money(t.monthly)}/mo` : ''}</span>
+                          <span className="capitalize text-zinc-300">{t.action_type.replace('_', ' ')}</span>
+                          <span className="tabular-nums text-zinc-400">{t.count}{t.monthly != null ? ` · ${money(t.monthly)}/mo` : ''}</span>
                         </div>
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
                           <div className="h-full rounded-full bg-emerald-400" style={{ width: `${(t.count / max) * 100}%` }} />
                         </div>
                       </div>
                     )
                   })}
-                  {(!summary.by_type || summary.by_type.length === 0) && <p className="text-sm text-slate-500">No data.</p>}
+                  {(!summary.by_type || summary.by_type.length === 0) && <p className="text-sm text-zinc-500">No data.</p>}
                 </CardBody>
               </Card>
             </div>
@@ -309,22 +309,22 @@ export default function WorksheetPage() {
           <Card>
             <CardHeader>
               <div className="flex flex-wrap items-center gap-3">
-                <h2 className="mr-auto text-sm font-semibold text-slate-200">Actions</h2>
+                <h2 className="mr-auto text-sm font-semibold text-zinc-200">Actions</h2>
                 <input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search title / owner…"
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:border-cyan-500 focus:outline-none"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-lime-500 focus:outline-none"
                 />
-                <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none">
+                <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none">
                   <option value="all">All status</option>
                   {STATUSES.map((s) => <option key={s} value={s}>{s.replace('_', ' ')}</option>)}
                 </select>
-                <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none">
+                <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)} className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none">
                   <option value="all">All types</option>
                   {actionTypes.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
-                <select value={riskFilter} onChange={(e) => setRiskFilter(e.target.value)} className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none">
+                <select value={riskFilter} onChange={(e) => setRiskFilter(e.target.value)} className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none">
                   <option value="all">All risk</option>
                   {RISK_LEVELS.map((r) => <option key={r} value={r}>{r} risk</option>)}
                 </select>
@@ -332,13 +332,13 @@ export default function WorksheetPage() {
             </CardHeader>
 
             {selected.length > 0 && (
-              <div className="flex flex-wrap items-center gap-3 border-b border-slate-800 bg-slate-950/60 px-5 py-3 text-sm">
-                <span className="text-slate-300">{selected.length} selected</span>
+              <div className="flex flex-wrap items-center gap-3 border-b border-zinc-800 bg-zinc-950/60 px-5 py-3 text-sm">
+                <span className="text-zinc-300">{selected.length} selected</span>
                 <select
                   defaultValue=""
                   onChange={(e) => { if (e.target.value) { bulkStatus(e.target.value); e.target.value = '' } }}
                   disabled={bulkBusy}
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-2 py-1 text-xs text-zinc-200 focus:border-lime-500 focus:outline-none"
                 >
                   <option value="">Set status…</option>
                   {STATUSES.map((s) => <option key={s} value={s}>{s.replace('_', ' ')}</option>)}
@@ -347,7 +347,7 @@ export default function WorksheetPage() {
                   defaultValue=""
                   onChange={(e) => { if (e.target.value) { bulkAssignCycle(e.target.value); e.target.value = '' } }}
                   disabled={bulkBusy || cycles.length === 0}
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none disabled:opacity-50"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-2 py-1 text-xs text-zinc-200 focus:border-lime-500 focus:outline-none disabled:opacity-50"
                 >
                   <option value="">Assign to cycle…</option>
                   {cycles.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
@@ -371,7 +371,7 @@ export default function WorksheetPage() {
                   <THead>
                     <TR>
                       <TH className="w-8">
-                        <input type="checkbox" checked={allSelected} onChange={toggleAll} className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-cyan-500" />
+                        <input type="checkbox" checked={allSelected} onChange={toggleAll} className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-lime-500" />
                       </TH>
                       <TH>Action</TH>
                       <TH>Type</TH>
@@ -388,33 +388,33 @@ export default function WorksheetPage() {
                     {filtered.map((a) => {
                       const band = riskBand(a.risk_score)
                       return (
-                        <TR key={a.id} className={selected.includes(a.id) ? 'bg-slate-800/40' : ''}>
+                        <TR key={a.id} className={selected.includes(a.id) ? 'bg-zinc-800/40' : ''}>
                           <TD>
-                            <input type="checkbox" checked={selected.includes(a.id)} onChange={() => toggleSelect(a.id)} className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-cyan-500" />
+                            <input type="checkbox" checked={selected.includes(a.id)} onChange={() => toggleSelect(a.id)} className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-lime-500" />
                           </TD>
-                          <TD className="max-w-xs font-medium text-slate-100">{a.title}</TD>
+                          <TD className="max-w-xs font-medium text-zinc-100">{a.title}</TD>
                           <TD><Badge tone="slate">{a.action_type}</Badge></TD>
-                          <TD className="text-right tabular-nums text-cyan-300">{a.priority_score != null ? Number(a.priority_score).toFixed(0) : '—'}</TD>
+                          <TD className="text-right tabular-nums text-lime-300">{a.priority_score != null ? Number(a.priority_score).toFixed(0) : '—'}</TD>
                           <TD className="text-right tabular-nums text-emerald-300">{money(a.monthly_savings)}</TD>
                           <TD><Badge tone={band === 'low' ? 'green' : band === 'medium' ? 'amber' : 'rose'}>{band}</Badge></TD>
-                          <TD className="text-slate-400">{a.owner || <span className="text-slate-600">unassigned</span>}</TD>
-                          <TD className="text-slate-400">{cycleName(a.cycle_id)}</TD>
+                          <TD className="text-zinc-400">{a.owner || <span className="text-zinc-600">unassigned</span>}</TD>
+                          <TD className="text-zinc-400">{cycleName(a.cycle_id)}</TD>
                           <TD>
                             <select
                               value={a.status}
                               disabled={busyId === a.id}
                               onChange={(e) => quickStatus(a, e.target.value)}
-                              className={`rounded-lg border border-slate-700 bg-slate-950 px-2 py-1 text-xs capitalize focus:border-cyan-500 focus:outline-none disabled:opacity-50 ${
+                              className={`rounded-lg border border-zinc-700 bg-zinc-950 px-2 py-1 text-xs capitalize focus:border-lime-500 focus:outline-none disabled:opacity-50 ${
                                 {
-                                  slate: 'text-slate-300',
-                                  blue: 'text-blue-300',
+                                  slate: 'text-zinc-300',
+                                  blue: 'text-lime-300',
                                   amber: 'text-amber-300',
                                   green: 'text-emerald-300',
                                   rose: 'text-rose-300',
                                 }[STATUS_TONE[a.status] || 'slate']
                               }`}
                             >
-                              {STATUSES.map((s) => <option key={s} value={s} className="text-slate-200">{s.replace('_', ' ')}</option>)}
+                              {STATUSES.map((s) => <option key={s} value={s} className="text-zinc-200">{s.replace('_', ' ')}</option>)}
                             </select>
                           </TD>
                           <TD className="text-right">
@@ -451,8 +451,8 @@ export default function WorksheetPage() {
               <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{editError}</div>
             )}
             <div>
-              <div className="text-sm font-medium text-slate-100">{editAction.title}</div>
-              <div className="mt-1 flex gap-3 text-xs text-slate-500">
+              <div className="text-sm font-medium text-zinc-100">{editAction.title}</div>
+              <div className="mt-1 flex gap-3 text-xs text-zinc-500">
                 <span>{editAction.action_type}</span>
                 <span className="text-emerald-300">{money(editAction.monthly_savings)}/mo</span>
                 <span>priority {editAction.priority_score != null ? Number(editAction.priority_score).toFixed(0) : '—'}</span>
@@ -460,21 +460,21 @@ export default function WorksheetPage() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Status</label>
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Status</label>
                 <select
                   value={editForm.status}
                   onChange={(e) => setEditForm({ ...editForm, status: e.target.value })}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm capitalize text-slate-200 focus:border-cyan-500 focus:outline-none"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm capitalize text-zinc-200 focus:border-lime-500 focus:outline-none"
                 >
                   {STATUSES.map((s) => <option key={s} value={s}>{s.replace('_', ' ')}</option>)}
                 </select>
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Cycle</label>
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Cycle</label>
                 <select
                   value={editForm.cycle_id}
                   onChange={(e) => setEditForm({ ...editForm, cycle_id: e.target.value })}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                 >
                   <option value="">Unassigned</option>
                   {cycles.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
@@ -482,21 +482,21 @@ export default function WorksheetPage() {
               </div>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Owner</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Owner</label>
               <input
                 value={editForm.owner}
                 onChange={(e) => setEditForm({ ...editForm, owner: e.target.value })}
                 placeholder="e.g. platform-team"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Notes</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Notes</label>
               <textarea
                 value={editForm.notes}
                 onChange={(e) => setEditForm({ ...editForm, notes: e.target.value })}
                 rows={3}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
           </div>

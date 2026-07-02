@@ -59,14 +59,14 @@ function actionTone(action?: string | null): 'green' | 'rose' | 'amber' | 'cyan'
 
 function entityDot(type?: string | null): string {
   const t = (type || '').toLowerCase()
-  if (t.includes('account')) return 'bg-blue-400'
+  if (t.includes('account')) return 'bg-lime-400'
   if (t.includes('asset') || t.includes('inventory')) return 'bg-violet-400'
-  if (t.includes('finding') || t.includes('analysis')) return 'bg-cyan-400'
+  if (t.includes('finding') || t.includes('analysis')) return 'bg-lime-400'
   if (t.includes('action') || t.includes('worksheet')) return 'bg-emerald-400'
   if (t.includes('cycle')) return 'bg-amber-400'
   if (t.includes('alert')) return 'bg-rose-400'
   if (t.includes('policy') || t.includes('retention')) return 'bg-teal-400'
-  return 'bg-slate-500'
+  return 'bg-zinc-500'
 }
 
 const LIMITS = [25, 50, 100, 200]
@@ -151,8 +151,8 @@ export default function ActivityPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Activity Log</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Activity Log</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             A chronological audit feed of every change across accounts, assets, findings, actions, and cycles.
           </p>
         </div>
@@ -169,18 +169,18 @@ export default function ActivityPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-sm font-semibold text-slate-200">Audit feed</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Audit feed</h2>
           <div className="flex flex-wrap items-center gap-2">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search events..."
-              className="w-52 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-52 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
             />
             <select
               value={entityType}
               onChange={(e) => setEntityType(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               <option value="all">All entities</option>
               {entityTypes.map((t) => (
@@ -192,7 +192,7 @@ export default function ActivityPage() {
             <select
               value={actionFilter}
               onChange={(e) => setActionFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               <option value="all">All actions</option>
               {actions.map((a) => (
@@ -204,7 +204,7 @@ export default function ActivityPage() {
             <select
               value={limit}
               onChange={(e) => setLimit(Number(e.target.value))}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               {LIMITS.map((n) => (
                 <option key={n} value={n}>
@@ -245,27 +245,27 @@ export default function ActivityPage() {
               {grouped.map(([day, items]) => (
                 <div key={day}>
                   <div className="mb-3 flex items-center gap-3">
-                    <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500">{day}</h3>
-                    <div className="h-px flex-1 bg-slate-800" />
-                    <span className="text-xs text-slate-600">{items.length}</span>
+                    <h3 className="text-xs font-semibold uppercase tracking-wide text-zinc-500">{day}</h3>
+                    <div className="h-px flex-1 bg-zinc-800" />
+                    <span className="text-xs text-zinc-600">{items.length}</span>
                   </div>
                   <ol className="space-y-3">
                     {items.map((e) => (
                       <li key={e.id} className="flex gap-3">
                         <div className="flex flex-col items-center">
                           <span className={`mt-1.5 h-2.5 w-2.5 rounded-full ${entityDot(e.entity_type)}`} />
-                          <span className="mt-1 w-px flex-1 bg-slate-800" />
+                          <span className="mt-1 w-px flex-1 bg-zinc-800" />
                         </div>
-                        <div className="flex-1 rounded-lg border border-slate-800 bg-slate-950 px-4 py-3">
+                        <div className="flex-1 rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3">
                           <div className="flex flex-wrap items-center justify-between gap-2">
                             <div className="flex flex-wrap items-center gap-2">
                               <Badge tone={actionTone(e.action)}>{e.action || 'event'}</Badge>
-                              {e.entity_type && <span className="text-sm font-medium text-slate-200">{e.entity_type}</span>}
+                              {e.entity_type && <span className="text-sm font-medium text-zinc-200">{e.entity_type}</span>}
                               {e.entity_id && (
-                                <code className="rounded bg-slate-800 px-1.5 py-0.5 text-xs text-slate-400">{e.entity_id}</code>
+                                <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-xs text-zinc-400">{e.entity_id}</code>
                               )}
                             </div>
-                            <span className="text-xs text-slate-500" title={fmtDateTime(e.created_at)}>
+                            <span className="text-xs text-zinc-500" title={fmtDateTime(e.created_at)}>
                               {relTime(e.created_at)}
                             </span>
                           </div>
@@ -274,15 +274,15 @@ export default function ActivityPage() {
                               {Object.entries(e.detail).slice(0, 8).map(([k, v]) => (
                                 <span
                                   key={k}
-                                  className="rounded bg-slate-800/60 px-2 py-0.5 text-xs text-slate-400"
+                                  className="rounded bg-zinc-800/60 px-2 py-0.5 text-xs text-zinc-400"
                                 >
-                                  <span className="text-slate-500">{k}:</span>{' '}
+                                  <span className="text-zinc-500">{k}:</span>{' '}
                                   {typeof v === 'object' ? JSON.stringify(v) : String(v)}
                                 </span>
                               ))}
                             </div>
                           )}
-                          <div className="mt-1 text-[11px] text-slate-600">{fmtDateTime(e.created_at)}</div>
+                          <div className="mt-1 text-[11px] text-zinc-600">{fmtDateTime(e.created_at)}</div>
                         </div>
                       </li>
                     ))}

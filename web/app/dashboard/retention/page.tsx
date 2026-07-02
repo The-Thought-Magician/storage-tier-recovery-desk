@@ -207,8 +207,8 @@ export default function RetentionPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Retention &amp; Reconciliation</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-semibold text-zinc-100">Retention &amp; Reconciliation</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Define lifecycle retention policies and reconcile them against your storage estate to surface over-retained data and coverage gaps.
           </p>
         </div>
@@ -247,20 +247,20 @@ export default function RetentionPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-slate-200">Coverage</h2>
-                <span className="text-xs text-slate-500">{coverage.toFixed(1)}% of assets governed</span>
+                <h2 className="text-sm font-semibold text-zinc-200">Coverage</h2>
+                <span className="text-xs text-zinc-500">{coverage.toFixed(1)}% of assets governed</span>
               </div>
             </CardHeader>
             <CardBody>
-              <div className="h-3 w-full overflow-hidden rounded-full bg-slate-800">
+              <div className="h-3 w-full overflow-hidden rounded-full bg-zinc-800">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all"
+                  className="h-full rounded-full bg-gradient-to-r from-lime-500 to-emerald-400 transition-all"
                   style={{ width: `${Math.min(100, Math.max(0, coverage))}%` }}
                 />
               </div>
-              <div className="mt-3 flex flex-wrap gap-6 text-xs text-slate-500">
-                <span><span className="font-semibold text-slate-300">{violations.length}</span> over-retention violations</span>
-                <span><span className="font-semibold text-slate-300">{gaps.length}</span> policy gaps</span>
+              <div className="mt-3 flex flex-wrap gap-6 text-xs text-zinc-500">
+                <span><span className="font-semibold text-zinc-300">{violations.length}</span> over-retention violations</span>
+                <span><span className="font-semibold text-zinc-300">{gaps.length}</span> policy gaps</span>
                 <span><span className="font-semibold text-emerald-300">{money(reconcile?.recoverable_monthly)}</span> recoverable / mo</span>
               </div>
             </CardBody>
@@ -269,17 +269,17 @@ export default function RetentionPage() {
           <Card>
             <CardHeader>
               <div className="flex flex-wrap items-center gap-3">
-                <h2 className="mr-auto text-sm font-semibold text-slate-200">Retention Policies</h2>
+                <h2 className="mr-auto text-sm font-semibold text-zinc-200">Retention Policies</h2>
                 <input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search policies…"
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:border-cyan-500 focus:outline-none"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-lime-500 focus:outline-none"
                 />
                 <select
                   value={scopeFilter}
                   onChange={(e) => setScopeFilter(e.target.value)}
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                 >
                   <option value="all">All scopes</option>
                   {SCOPE_TYPES.map((s) => (
@@ -289,7 +289,7 @@ export default function RetentionPage() {
                 <select
                   value={enabledFilter}
                   onChange={(e) => setEnabledFilter(e.target.value)}
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                 >
                   <option value="all">All status</option>
                   <option value="enabled">Enabled</option>
@@ -322,10 +322,10 @@ export default function RetentionPage() {
                   <TBody>
                     {filtered.map((p) => (
                       <TR key={p.id}>
-                        <TD className="font-medium text-slate-100">{p.name}</TD>
+                        <TD className="font-medium text-zinc-100">{p.name}</TD>
                         <TD>
                           <Badge tone="slate">{p.scope_type}</Badge>
-                          {p.scope_value && <span className="ml-2 text-xs text-slate-500">{p.scope_value}</span>}
+                          {p.scope_value && <span className="ml-2 text-xs text-zinc-500">{p.scope_value}</span>}
                         </TD>
                         <TD className="text-right tabular-nums">{p.max_age_days != null ? `${p.max_age_days}d` : '—'}</TD>
                         <TD className="text-right tabular-nums">
@@ -362,7 +362,7 @@ export default function RetentionPage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <h2 className="text-sm font-semibold text-slate-200">Over-Retention Violations</h2>
+                  <h2 className="text-sm font-semibold text-zinc-200">Over-Retention Violations</h2>
                   <Badge tone={violations.length ? 'amber' : 'slate'}>{violations.length}</Badge>
                 </div>
               </CardHeader>
@@ -384,8 +384,8 @@ export default function RetentionPage() {
                     <TBody>
                       {violations.map((v, i) => (
                         <TR key={v.id || v.asset_id || i}>
-                          <TD className="font-medium text-slate-200">{v.asset_name || v.asset_id || 'Asset'}</TD>
-                          <TD className="text-slate-400">{v.policy_name || '—'}</TD>
+                          <TD className="font-medium text-zinc-200">{v.asset_name || v.asset_id || 'Asset'}</TD>
+                          <TD className="text-zinc-400">{v.policy_name || '—'}</TD>
                           <TD className="text-right tabular-nums">{v.age_days != null ? `${v.age_days}d` : '—'}</TD>
                           <TD className="text-right tabular-nums text-emerald-300">{money(v.monthly_savings)}</TD>
                         </TR>
@@ -399,7 +399,7 @@ export default function RetentionPage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <h2 className="text-sm font-semibold text-slate-200">Policy Gaps</h2>
+                  <h2 className="text-sm font-semibold text-zinc-200">Policy Gaps</h2>
                   <Badge tone={gaps.length ? 'amber' : 'slate'}>{gaps.length}</Badge>
                 </div>
               </CardHeader>
@@ -420,9 +420,9 @@ export default function RetentionPage() {
                     <TBody>
                       {gaps.map((g, i) => (
                         <TR key={g.id || g.asset_id || i}>
-                          <TD className="font-medium text-slate-200">{g.asset_name || g.asset_id || 'Asset'}</TD>
+                          <TD className="font-medium text-zinc-200">{g.asset_name || g.asset_id || 'Asset'}</TD>
                           <TD>{g.current_tier ? <Badge tone="slate">{g.current_tier}</Badge> : '—'}</TD>
-                          <TD className="text-slate-400">{g.detail || 'No governing policy'}</TD>
+                          <TD className="text-zinc-400">{g.detail || 'No governing policy'}</TD>
                         </TR>
                       ))}
                     </TBody>
@@ -454,7 +454,7 @@ export default function RetentionPage() {
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="e.g. 90-day cold archive"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-lime-500 focus:outline-none"
             />
           </Field>
           <div className="grid grid-cols-2 gap-4">
@@ -462,7 +462,7 @@ export default function RetentionPage() {
               <select
                 value={form.scope_type}
                 onChange={(e) => setForm({ ...form, scope_type: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               >
                 {SCOPE_TYPES.map((s) => (
                   <option key={s} value={s}>{s}</option>
@@ -475,7 +475,7 @@ export default function RetentionPage() {
                 onChange={(e) => setForm({ ...form, scope_value: e.target.value })}
                 placeholder={form.scope_type === 'workspace' ? '(all)' : 'value'}
                 disabled={form.scope_type === 'workspace'}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-cyan-500 focus:outline-none disabled:opacity-50"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-lime-500 focus:outline-none disabled:opacity-50"
               />
             </Field>
           </div>
@@ -486,7 +486,7 @@ export default function RetentionPage() {
                 min={0}
                 value={form.max_age_days}
                 onChange={(e) => setForm({ ...form, max_age_days: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               />
             </Field>
             <Field label="Delete After (days)" hint="optional">
@@ -495,7 +495,7 @@ export default function RetentionPage() {
                 min={0}
                 value={form.delete_after_days}
                 onChange={(e) => setForm({ ...form, delete_after_days: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               />
             </Field>
           </div>
@@ -506,14 +506,14 @@ export default function RetentionPage() {
                 min={0}
                 value={form.transition_after_days}
                 onChange={(e) => setForm({ ...form, transition_after_days: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               />
             </Field>
             <Field label="Transition To Tier" hint="optional">
               <select
                 value={form.transition_to_tier}
                 onChange={(e) => setForm({ ...form, transition_to_tier: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               >
                 <option value="">—</option>
                 {TIERS.map((t) => (
@@ -522,12 +522,12 @@ export default function RetentionPage() {
               </select>
             </Field>
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={form.enabled}
               onChange={(e) => setForm({ ...form, enabled: e.target.checked })}
-              className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-cyan-500"
+              className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-lime-500"
             />
             Enabled
           </label>
@@ -540,9 +540,9 @@ export default function RetentionPage() {
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="mb-1 flex items-center justify-between text-xs font-medium uppercase tracking-wide text-slate-500">
+      <label className="mb-1 flex items-center justify-between text-xs font-medium uppercase tracking-wide text-zinc-500">
         <span>{label}</span>
-        {hint && <span className="font-normal normal-case text-slate-600">{hint}</span>}
+        {hint && <span className="font-normal normal-case text-zinc-600">{hint}</span>}
       </label>
       {children}
     </div>

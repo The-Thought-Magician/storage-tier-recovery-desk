@@ -240,7 +240,7 @@ export default function AccountsPage() {
         <Card className="border-rose-500/30">
           <CardBody>
             <h2 className="text-base font-semibold text-rose-300">Could not load accounts</h2>
-            <p className="mt-1 text-sm text-slate-400">{error}</p>
+            <p className="mt-1 text-sm text-zinc-400">{error}</p>
             <Button className="mt-4" variant="secondary" onClick={load}>
               Retry
             </Button>
@@ -256,8 +256,8 @@ export default function AccountsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-100">Cloud Accounts</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Cloud Accounts</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Registry of connected cloud accounts and their spend / recoverable rollup.
           </p>
         </div>
@@ -283,7 +283,7 @@ export default function AccountsPage() {
       {byProvider.length > 0 && (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">By provider</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">By provider</h2>
           </CardHeader>
           <CardBody>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -291,15 +291,15 @@ export default function AccountsPage() {
                 const total = Number(rollup?.total_spend ?? 0)
                 const pct = total > 0 ? (Number(p.spend ?? 0) / total) * 100 : 0
                 return (
-                  <div key={p.provider} className="rounded-lg border border-slate-800 bg-slate-900/60 p-3">
+                  <div key={p.provider} className="rounded-lg border border-zinc-800 bg-zinc-900/60 p-3">
                     <div className="flex items-center justify-between">
                       <Badge tone={providerTone(p.provider)}>{(p.provider || 'other').toUpperCase()}</Badge>
-                      <span className="text-xs text-slate-500">{p.account_count ?? 0} acct</span>
+                      <span className="text-xs text-zinc-500">{p.account_count ?? 0} acct</span>
                     </div>
-                    <div className="mt-2 text-lg font-semibold tabular-nums text-slate-100">{fmtMoney(p.spend)}</div>
-                    <div className="text-xs text-cyan-300">{fmtMoney(p.recoverable)} recoverable</div>
-                    <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
-                      <div className="h-full rounded-full bg-cyan-500/70" style={{ width: `${pct}%` }} />
+                    <div className="mt-2 text-lg font-semibold tabular-nums text-zinc-100">{fmtMoney(p.spend)}</div>
+                    <div className="text-xs text-lime-300">{fmtMoney(p.recoverable)} recoverable</div>
+                    <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-full rounded-full bg-lime-500/70" style={{ width: `${pct}%` }} />
                     </div>
                   </div>
                 )
@@ -315,12 +315,12 @@ export default function AccountsPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search name, ref, team, cost center..."
-          className="min-w-[220px] flex-1 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+          className="min-w-[220px] flex-1 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
         />
         <select
           value={providerFilter}
           onChange={(e) => setProviderFilter(e.target.value)}
-          className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+          className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
         >
           <option value="">All providers</option>
           {PROVIDERS.map((p) => (
@@ -332,7 +332,7 @@ export default function AccountsPage() {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+          className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
         >
           <option value="">All statuses</option>
           {STATUSES.map((s) => (
@@ -356,7 +356,7 @@ export default function AccountsPage() {
               />
             </div>
           ) : filtered.length === 0 ? (
-            <p className="px-5 py-10 text-center text-sm text-slate-500">No accounts match your filters.</p>
+            <p className="px-5 py-10 text-center text-sm text-zinc-500">No accounts match your filters.</p>
           ) : (
             <Table>
               <THead>
@@ -376,20 +376,20 @@ export default function AccountsPage() {
                 {filtered.map((a) => (
                   <TR key={a.id}>
                     <TD>
-                      <div className="font-medium text-slate-200">{a.name || 'Unnamed'}</div>
-                      {a.cost_center && <div className="text-xs text-slate-500">{a.cost_center}</div>}
+                      <div className="font-medium text-zinc-200">{a.name || 'Unnamed'}</div>
+                      {a.cost_center && <div className="text-xs text-zinc-500">{a.cost_center}</div>}
                     </TD>
                     <TD>
                       <Badge tone={providerTone(a.provider)}>{(a.provider || 'other').toUpperCase()}</Badge>
                     </TD>
-                    <TD className="font-mono text-xs text-slate-400">{a.account_ref || '—'}</TD>
+                    <TD className="font-mono text-xs text-zinc-400">{a.account_ref || '—'}</TD>
                     <TD className="capitalize">{a.environment || '—'}</TD>
                     <TD>{a.team || '—'}</TD>
-                    <TD className="text-slate-400">{a.default_region || '—'}</TD>
+                    <TD className="text-zinc-400">{a.default_region || '—'}</TD>
                     <TD>
                       <Badge tone={statusTone(a.status)}>{a.status || 'unknown'}</Badge>
                     </TD>
-                    <TD className="text-xs text-slate-500">{fmtDate(a.last_ingest_at)}</TD>
+                    <TD className="text-xs text-zinc-500">{fmtDate(a.last_ingest_at)}</TD>
                     <TD className="text-right">
                       <div className="flex justify-end gap-1">
                         <Button variant="ghost" className="px-2 py-1 text-xs" onClick={() => openEdit(a)}>
@@ -511,8 +511,8 @@ export default function AccountsPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
-          Delete <span className="font-semibold text-slate-100">{deleting?.name}</span>? This removes the account and its
+        <p className="text-sm text-zinc-300">
+          Delete <span className="font-semibold text-zinc-100">{deleting?.name}</span>? This removes the account and its
           associated inventory. This action cannot be undone.
         </p>
       </Modal>
@@ -521,12 +521,12 @@ export default function AccountsPage() {
 }
 
 const inputCls =
-  'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none'
+  'w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none'
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
+      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</span>
       {children}
     </label>
   )

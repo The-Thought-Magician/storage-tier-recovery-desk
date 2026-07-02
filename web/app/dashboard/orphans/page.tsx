@@ -249,8 +249,8 @@ export default function OrphansPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Orphans &amp; Abandoned Resources</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Orphans &amp; Abandoned Resources</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Detached volumes, abandoned buckets, incomplete multipart uploads, and orphaned snapshots that keep
             accruing cost with no owner. Promote any to queue a removal action.
           </p>
@@ -278,7 +278,7 @@ export default function OrphansPage() {
       {summaryRows.length > 0 && (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">By type</h2>
+            <h2 className="text-sm font-semibold text-zinc-200">By type</h2>
           </CardHeader>
           <CardBody>
             <div className="space-y-3">
@@ -300,18 +300,18 @@ export default function OrphansPage() {
                           onClick={() => setTypeFilter(typeFilter === t ? 'all' : t)}
                           className="w-44 shrink-0 text-left"
                         >
-                          <Badge tone={toneForType(t)} className={typeFilter === t ? 'ring-1 ring-cyan-400' : ''}>
+                          <Badge tone={toneForType(t)} className={typeFilter === t ? 'ring-1 ring-lime-400' : ''}>
                             {typeLabel(t)}
                           </Badge>
                         </button>
-                        <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-zinc-800">
                           <div
-                            className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400"
+                            className="h-full rounded-full bg-gradient-to-r from-lime-500 to-lime-400"
                             style={{ width: `${pct}%` }}
                           />
                         </div>
-                        <div className="w-28 shrink-0 text-right text-sm tabular-nums text-slate-300">{money2(m)}/mo</div>
-                        <div className="w-16 shrink-0 text-right text-xs tabular-nums text-slate-500">
+                        <div className="w-28 shrink-0 text-right text-sm tabular-nums text-zinc-300">{money2(m)}/mo</div>
+                        <div className="w-16 shrink-0 text-right text-xs tabular-nums text-zinc-500">
                           {Number(r.count || 0)} ct
                         </div>
                       </div>
@@ -330,12 +330,12 @@ export default function OrphansPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search orphans..."
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
             />
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               <option value="all">All types</option>
               {types.map((t) => (
@@ -348,18 +348,18 @@ export default function OrphansPage() {
           <div className="flex items-center gap-3">
             {selectedOrphans.length > 0 && (
               <>
-                <span className="text-sm text-slate-400">
+                <span className="text-sm text-zinc-400">
                   {selectedOrphans.length} selected ·{' '}
-                  <span className="font-medium text-cyan-300">{money(selectedSavings)}</span>/mo
+                  <span className="font-medium text-lime-300">{money(selectedSavings)}</span>/mo
                 </span>
                 <Button onClick={promoteSelected} disabled={submitting} className="px-3 py-1.5 text-xs">
                   {submitting ? 'Promoting...' : 'Promote selected'}
                 </Button>
               </>
             )}
-            <span className="text-sm text-slate-500">
-              <span className="font-medium text-slate-300">{filtered.length}</span> shown ·{' '}
-              <span className="font-medium text-cyan-300">{money(filteredMonthly)}</span>/mo
+            <span className="text-sm text-zinc-500">
+              <span className="font-medium text-zinc-300">{filtered.length}</span> shown ·{' '}
+              <span className="font-medium text-lime-300">{money(filteredMonthly)}</span>/mo
             </span>
           </div>
         </CardHeader>
@@ -426,20 +426,20 @@ export default function OrphansPage() {
                           checked={!!selected[k]}
                           disabled={done}
                           onChange={() => toggleSelect(o)}
-                          className="h-4 w-4 rounded border-slate-600 bg-slate-950 accent-cyan-500"
+                          className="h-4 w-4 rounded border-zinc-600 bg-zinc-950 accent-lime-500"
                         />
                       </TD>
                       <TD>
-                        <div className="font-medium text-slate-100">{o.name || o.asset_id || k}</div>
-                        {o.detail && <div className="mt-0.5 max-w-md text-xs text-slate-500">{o.detail}</div>}
+                        <div className="font-medium text-zinc-100">{o.name || o.asset_id || k}</div>
+                        {o.detail && <div className="mt-0.5 max-w-md text-xs text-zinc-500">{o.detail}</div>}
                       </TD>
                       <TD>
                         <Badge tone={toneForType(typeOf(o))}>{typeLabel(typeOf(o))}</Badge>
                       </TD>
-                      <TD className="text-slate-400">{o.provider || '—'}</TD>
-                      <TD className="text-slate-400">{o.region || '—'}</TD>
-                      <TD className="text-right tabular-nums text-slate-400">{idle}</TD>
-                      <TD className="text-right tabular-nums text-slate-400">{bytes(o.size_bytes)}</TD>
+                      <TD className="text-zinc-400">{o.provider || '—'}</TD>
+                      <TD className="text-zinc-400">{o.region || '—'}</TD>
+                      <TD className="text-right tabular-nums text-zinc-400">{idle}</TD>
+                      <TD className="text-right tabular-nums text-zinc-400">{bytes(o.size_bytes)}</TD>
                       <TD className="text-right tabular-nums font-medium text-rose-300">
                         {money2(o.monthly_savings ?? o.monthly_cost)}
                       </TD>
@@ -478,9 +478,9 @@ export default function OrphansPage() {
       >
         {promoting && (
           <div className="space-y-4">
-            <div className="rounded-lg border border-slate-800 bg-slate-950 px-4 py-3">
-              <div className="font-medium text-slate-100">{promoting.name || 'Orphaned resource'}</div>
-              {promoting.detail && <div className="mt-1 text-xs text-slate-500">{promoting.detail}</div>}
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3">
+              <div className="font-medium text-zinc-100">{promoting.name || 'Orphaned resource'}</div>
+              {promoting.detail && <div className="mt-1 text-xs text-zinc-500">{promoting.detail}</div>}
               <div className="mt-3 flex flex-wrap gap-2 text-xs">
                 <Badge tone={toneForType(typeOf(promoting))}>{typeLabel(typeOf(promoting))}</Badge>
                 {promoting.current_tier && <Badge tone="slate">{promoting.current_tier}</Badge>}
@@ -489,22 +489,22 @@ export default function OrphansPage() {
               </div>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Owner</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Owner</label>
               <input
                 value={owner}
                 onChange={(e) => setOwner(e.target.value)}
                 placeholder="Assign an owner (optional)"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Notes</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Notes</label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 rows={3}
                 placeholder={promoting.detail || 'Context for the removal action (optional)'}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             {formError && (

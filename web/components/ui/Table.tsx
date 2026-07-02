@@ -11,16 +11,16 @@ export function Table({ className = '', children, ...props }: HTMLAttributes<HTM
 }
 
 export function THead({ children }: { children: React.ReactNode }) {
-  return <thead className="border-b border-slate-800 text-left text-xs uppercase tracking-wide text-slate-500">{children}</thead>
+  return <thead className="border-b border-zinc-800 text-left text-xs uppercase tracking-wide text-zinc-500">{children}</thead>
 }
 
 export function TBody({ children }: { children: React.ReactNode }) {
-  return <tbody className="divide-y divide-slate-800/70">{children}</tbody>
+  return <tbody className="divide-y divide-zinc-800/70">{children}</tbody>
 }
 
 export function TR({ className = '', children, ...props }: HTMLAttributes<HTMLTableRowElement>) {
   return (
-    <tr className={`hover:bg-slate-800/40 ${className}`} {...props}>
+    <tr className={`hover:bg-zinc-800/40 ${className}`} {...props}>
       {children}
     </tr>
   )
@@ -36,7 +36,7 @@ export function TH({ className = '', children, ...props }: ThHTMLAttributes<HTML
 
 export function TD({ className = '', children, ...props }: TdHTMLAttributes<HTMLTableCellElement>) {
   return (
-    <td className={`px-4 py-3 text-slate-300 ${className}`} {...props}>
+    <td className={`px-4 py-3 text-zinc-300 ${className}`} {...props}>
       {children}
     </td>
   )

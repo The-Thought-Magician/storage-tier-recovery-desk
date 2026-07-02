@@ -7,13 +7,13 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const tones: Record<Tone, string> = {
-  default: 'bg-slate-800 text-slate-300 border-slate-700',
-  slate: 'bg-slate-800 text-slate-300 border-slate-700',
-  cyan: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30',
+  default: 'bg-zinc-800 text-zinc-300 border-zinc-700',
+  slate: 'bg-zinc-800 text-zinc-300 border-zinc-700',
+  cyan: 'bg-lime-500/10 text-lime-300 border-lime-500/30',
   green: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30',
   amber: 'bg-amber-500/10 text-amber-300 border-amber-500/30',
   rose: 'bg-rose-500/10 text-rose-300 border-rose-500/30',
-  blue: 'bg-blue-500/10 text-blue-300 border-blue-500/30',
+  blue: 'bg-lime-500/10 text-lime-300 border-lime-500/30',
   violet: 'bg-violet-500/10 text-violet-300 border-violet-500/30',
 }
 

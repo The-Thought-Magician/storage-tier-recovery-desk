@@ -43,7 +43,7 @@ const fmtRate = (n?: number) =>
   n == null ? '—' : `$${n.toLocaleString('en-US', { maximumFractionDigits: 5 })}`
 
 const INPUT_CLASS =
-  'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none'
+  'w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none'
 
 const emptyEntryForm = {
   provider: '',
@@ -267,8 +267,8 @@ export default function PricingPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Pricing Book</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Pricing Book</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Define provider/region/tier rate cards that drive savings calculations.
           </p>
         </div>
@@ -301,7 +301,7 @@ export default function PricingPage() {
         <div className="grid gap-6 lg:grid-cols-4">
           {/* Books list */}
           <div className="space-y-2 lg:col-span-1">
-            <div className="px-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+            <div className="px-1 text-xs font-semibold uppercase tracking-wide text-zinc-500">
               Books
             </div>
             {books.map((b) => {
@@ -312,15 +312,15 @@ export default function PricingPage() {
                   onClick={() => selectBook(b.id)}
                   className={`w-full rounded-xl border p-3 text-left transition-colors ${
                     active
-                      ? 'border-cyan-500/40 bg-cyan-500/5'
-                      : 'border-slate-800 bg-slate-900 hover:bg-slate-800/60'
+                      ? 'border-lime-500/40 bg-lime-500/5'
+                      : 'border-zinc-800 bg-zinc-900 hover:bg-zinc-800/60'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="truncate text-sm font-medium text-slate-200">{b.name ?? b.id}</span>
+                    <span className="truncate text-sm font-medium text-zinc-200">{b.name ?? b.id}</span>
                     {b.is_default && <Badge tone="cyan">default</Badge>}
                   </div>
-                  <div className="mt-1 flex items-center gap-2 text-xs text-slate-500">
+                  <div className="mt-1 flex items-center gap-2 text-xs text-zinc-500">
                     {b.version && <span>v{b.version}</span>}
                     <span>{b.currency ?? 'USD'}</span>
                   </div>
@@ -334,19 +334,19 @@ export default function PricingPage() {
             <Card>
               <CardHeader className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <h2 className="text-sm font-semibold text-slate-200">
+                  <h2 className="text-sm font-semibold text-zinc-200">
                     {activeBook?.name ?? 'Entries'}
                     {activeBook?.version && (
-                      <span className="ml-2 text-xs font-normal text-slate-500">v{activeBook.version}</span>
+                      <span className="ml-2 text-xs font-normal text-zinc-500">v{activeBook.version}</span>
                     )}
                   </h2>
-                  <p className="mt-0.5 text-xs text-slate-500">{entries.length} rate entries</p>
+                  <p className="mt-0.5 text-xs text-zinc-500">{entries.length} rate entries</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <select
                     value={providerFilter}
                     onChange={(e) => setProviderFilter(e.target.value)}
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                    className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                   >
                     <option value="">All providers</option>
                     {providers.map((p) => (
@@ -359,7 +359,7 @@ export default function PricingPage() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search..."
-                    className="w-36 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                    className="w-36 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
                   />
                   <Button onClick={openCreateEntry} disabled={!activeBookId}>
                     Add entry
@@ -397,24 +397,24 @@ export default function PricingPage() {
                     <TBody>
                       {filteredEntries.map((e) => (
                         <TR key={e.id}>
-                          <TD className="font-medium text-slate-200">{e.provider ?? '—'}</TD>
-                          <TD className="text-slate-400">{e.region ?? '—'}</TD>
+                          <TD className="font-medium text-zinc-200">{e.provider ?? '—'}</TD>
+                          <TD className="text-zinc-400">{e.region ?? '—'}</TD>
                           <TD>
                             <Badge tone="blue">{e.tier ?? '—'}</Badge>
                           </TD>
-                          <TD className="text-right tabular-nums text-cyan-300">
+                          <TD className="text-right tabular-nums text-lime-300">
                             {fmtRate(e.storage_per_gb_month)}
                           </TD>
-                          <TD className="text-right tabular-nums text-slate-300">
+                          <TD className="text-right tabular-nums text-zinc-300">
                             {fmtRate(e.retrieval_per_gb)}
                           </TD>
-                          <TD className="text-right tabular-nums text-slate-300">
+                          <TD className="text-right tabular-nums text-zinc-300">
                             {fmtRate(e.request_per_1k)}
                           </TD>
-                          <TD className="text-right tabular-nums text-slate-400">
+                          <TD className="text-right tabular-nums text-zinc-400">
                             {e.min_duration_days ?? '—'}
                           </TD>
-                          <TD className="text-right tabular-nums text-slate-300">
+                          <TD className="text-right tabular-nums text-zinc-300">
                             {fmtRate(e.early_delete_penalty_per_gb)}
                           </TD>
                           <TD className="text-right">
@@ -486,12 +486,12 @@ export default function PricingPage() {
               />
             </Field>
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={bookForm.is_default}
               onChange={(e) => setBookForm({ ...bookForm, is_default: e.target.checked })}
-              className="h-4 w-4 accent-cyan-500"
+              className="h-4 w-4 accent-lime-500"
             />
             Set as default book
           </label>
@@ -605,7 +605,7 @@ export default function PricingPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-slate-400">{label}</span>
+      <span className="mb-1 block text-xs font-medium text-zinc-400">{label}</span>
       {children}
     </label>
   )

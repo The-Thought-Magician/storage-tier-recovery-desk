@@ -213,8 +213,8 @@ export default function ForecastPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Savings Forecast</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Savings Forecast</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Compare recovery scenarios and build a custom projection from worksheet actions.
           </p>
         </div>
@@ -237,8 +237,8 @@ export default function ForecastPage() {
       {/* Scenario forecasts */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Modeled Scenarios</h2>
-          <p className="mt-0.5 text-xs text-slate-500">Pre-built recovery scenarios across your estate.</p>
+          <h2 className="text-sm font-semibold text-zinc-200">Modeled Scenarios</h2>
+          <p className="mt-0.5 text-xs text-zinc-500">Pre-built recovery scenarios across your estate.</p>
         </CardHeader>
         <CardBody>
           {scenarios.length === 0 ? (
@@ -254,25 +254,25 @@ export default function ForecastPage() {
                 return (
                   <div
                     key={s.id ?? s.key ?? i}
-                    className="rounded-xl border border-slate-800 bg-slate-900/60 p-4"
+                    className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-slate-200">{scenarioName(s)}</span>
+                      <span className="text-sm font-medium text-zinc-200">{scenarioName(s)}</span>
                       {s.risk && <Badge tone={riskTone(s.risk)}>{s.risk}</Badge>}
                     </div>
                     {s.description && (
-                      <p className="mt-1 text-xs text-slate-500">{s.description}</p>
+                      <p className="mt-1 text-xs text-zinc-500">{s.description}</p>
                     )}
-                    <div className="mt-3 text-2xl font-semibold tabular-nums text-cyan-300">
+                    <div className="mt-3 text-2xl font-semibold tabular-nums text-lime-300">
                       {fmtUSD(monthly)}
-                      <span className="ml-1 text-xs font-normal text-slate-500">/mo</span>
+                      <span className="ml-1 text-xs font-normal text-zinc-500">/mo</span>
                     </div>
-                    <div className="mt-1 text-xs text-slate-500">
+                    <div className="mt-1 text-xs text-zinc-500">
                       {fmtUSD(scenarioAnnual(s))} / yr · {scenarioCount(s)} actions
                     </div>
-                    <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                    <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-300"
+                        className="h-full rounded-full bg-gradient-to-r from-lime-500 to-lime-300"
                         style={{ width: `${pct}%` }}
                       />
                     </div>
@@ -290,8 +290,8 @@ export default function ForecastPage() {
           <Card>
             <CardHeader className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 className="text-sm font-semibold text-slate-200">Scenario Builder</h2>
-                <p className="mt-0.5 text-xs text-slate-500">
+                <h2 className="text-sm font-semibold text-zinc-200">Scenario Builder</h2>
+                <p className="mt-0.5 text-xs text-zinc-500">
                   Select actions to include in a custom projection.
                 </p>
               </div>
@@ -300,12 +300,12 @@ export default function ForecastPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search actions..."
-                  className="w-40 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                  className="w-40 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
                 />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                 >
                   <option value="priority">Sort: Priority</option>
                   <option value="savings">Sort: Savings</option>
@@ -357,24 +357,24 @@ export default function ForecastPage() {
                         <TR
                           key={a.id}
                           onClick={() => toggle(a.id)}
-                          className={`cursor-pointer ${checked ? 'bg-cyan-500/5' : ''}`}
+                          className={`cursor-pointer ${checked ? 'bg-lime-500/5' : ''}`}
                         >
                           <TD>
                             <input
                               type="checkbox"
                               checked={checked}
                               readOnly
-                              className="h-4 w-4 accent-cyan-500"
+                              className="h-4 w-4 accent-lime-500"
                             />
                           </TD>
-                          <TD className="font-medium text-slate-200">{a.title ?? a.id}</TD>
+                          <TD className="font-medium text-zinc-200">{a.title ?? a.id}</TD>
                           <TD>
                             <Badge tone="slate">{a.action_type ?? '—'}</Badge>
                           </TD>
                           <TD className="text-right tabular-nums text-emerald-300">
                             {fmtUSD2(a.monthly_savings)}
                           </TD>
-                          <TD className="text-right tabular-nums text-slate-400">
+                          <TD className="text-right tabular-nums text-zinc-400">
                             {a.priority_score != null ? a.priority_score.toFixed(2) : '—'}
                           </TD>
                           <TD>
@@ -396,8 +396,8 @@ export default function ForecastPage() {
         <div className="space-y-4">
           <Card className="sticky top-20">
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Projection</h2>
-              <p className="mt-0.5 text-xs text-slate-500">{selected.size} actions selected</p>
+              <h2 className="text-sm font-semibold text-zinc-200">Projection</h2>
+              <p className="mt-0.5 text-xs text-zinc-500">{selected.size} actions selected</p>
             </CardHeader>
             <CardBody className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
@@ -416,22 +416,22 @@ export default function ForecastPage() {
               {projectError && <p className="text-sm text-rose-300">{projectError}</p>}
 
               {projection && (
-                <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-4">
-                  <div className="text-xs font-medium uppercase tracking-wide text-cyan-400">
+                <div className="rounded-xl border border-lime-500/30 bg-lime-500/5 p-4">
+                  <div className="text-xs font-medium uppercase tracking-wide text-lime-400">
                     Server projection
                   </div>
-                  <div className="mt-2 text-3xl font-semibold tabular-nums text-cyan-200">
+                  <div className="mt-2 text-3xl font-semibold tabular-nums text-lime-200">
                     {fmtUSD(projection.monthly)}
-                    <span className="ml-1 text-sm font-normal text-slate-400">/mo</span>
+                    <span className="ml-1 text-sm font-normal text-zinc-400">/mo</span>
                   </div>
-                  <div className="mt-1 text-sm text-slate-400">
+                  <div className="mt-1 text-sm text-zinc-400">
                     {fmtUSD(projection.annual)} annualized · {projection.count} actions
                   </div>
                 </div>
               )}
 
               {!projection && selected.size === 0 && (
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-zinc-500">
                   Pick actions from the builder, or use a quick preset, then project to confirm
                   recoverable spend.
                 </p>

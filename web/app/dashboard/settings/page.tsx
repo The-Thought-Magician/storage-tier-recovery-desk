@@ -346,8 +346,8 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-slate-100">Settings</h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <h1 className="text-2xl font-semibold text-zinc-100">Settings</h1>
+        <p className="mt-1 text-sm text-zinc-500">
           Workspace preferences, recovery scoring weights, saved views, notifications, and billing.
         </p>
       </div>
@@ -385,9 +385,9 @@ export default function SettingsPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-slate-200">Workspace &amp; Scoring</h2>
+                <h2 className="text-sm font-semibold text-zinc-200">Workspace &amp; Scoring</h2>
                 {settings.updated_at && (
-                  <span className="text-xs text-slate-500">Updated {fmtDate(settings.updated_at)}</span>
+                  <span className="text-xs text-zinc-500">Updated {fmtDate(settings.updated_at)}</span>
                 )}
               </div>
             </CardHeader>
@@ -400,7 +400,7 @@ export default function SettingsPage() {
                       setSettings({ ...settings, default_currency: e.target.value })
                       setSettingsMsg(null)
                     }}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                    className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                   >
                     {CURRENCIES.map((c) => (
                       <option key={c} value={c}>{c}</option>
@@ -414,7 +414,7 @@ export default function SettingsPage() {
                       setSettings({ ...settings, fiscal_quarter_start: Number(e.target.value) })
                       setSettingsMsg(null)
                     }}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                    className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                   >
                     {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
                       <option key={m} value={m}>
@@ -427,8 +427,8 @@ export default function SettingsPage() {
 
               <div className="mt-6">
                 <div className="mb-2 flex items-center justify-between">
-                  <h3 className="text-xs font-medium uppercase tracking-wide text-slate-500">Recovery Priority Weights</h3>
-                  <span className="text-xs text-slate-500">
+                  <h3 className="text-xs font-medium uppercase tracking-wide text-zinc-500">Recovery Priority Weights</h3>
+                  <span className="text-xs text-zinc-500">
                     priority = savings × w<sub>s</sub> − effort × w<sub>e</sub> − risk × w<sub>r</sub>
                   </span>
                 </div>
@@ -458,12 +458,12 @@ export default function SettingsPage() {
 
                 {/* normalized distribution bar */}
                 <div className="mt-4">
-                  <div className="flex h-3 w-full overflow-hidden rounded-full bg-slate-800">
+                  <div className="flex h-3 w-full overflow-hidden rounded-full bg-zinc-800">
                     <div className="h-full bg-emerald-500" style={{ width: `${normalized.savings * 100}%` }} title={`Savings ${(normalized.savings * 100).toFixed(0)}%`} />
                     <div className="h-full bg-amber-500" style={{ width: `${normalized.effort * 100}%` }} title={`Effort ${(normalized.effort * 100).toFixed(0)}%`} />
                     <div className="h-full bg-rose-500" style={{ width: `${normalized.risk * 100}%` }} title={`Risk ${(normalized.risk * 100).toFixed(0)}%`} />
                   </div>
-                  <div className="mt-2 flex flex-wrap gap-4 text-xs text-slate-500">
+                  <div className="mt-2 flex flex-wrap gap-4 text-xs text-zinc-500">
                     <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-emerald-500" />Savings {(normalized.savings * 100).toFixed(0)}%</span>
                     <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-amber-500" />Effort {(normalized.effort * 100).toFixed(0)}%</span>
                     <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-rose-500" />Risk {(normalized.risk * 100).toFixed(0)}%</span>
@@ -496,7 +496,7 @@ export default function SettingsPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-slate-200">Saved Views</h2>
+                <h2 className="text-sm font-semibold text-zinc-200">Saved Views</h2>
                 <Button variant="secondary" className="px-3 py-1.5" onClick={openCreateView}>+ New View</Button>
               </div>
             </CardHeader>
@@ -523,14 +523,14 @@ export default function SettingsPage() {
                   <TBody>
                     {views.map((v) => (
                       <TR key={v.id}>
-                        <TD className="font-medium text-slate-100">{v.name}</TD>
+                        <TD className="font-medium text-zinc-100">{v.name}</TD>
                         <TD><Badge tone="cyan">{v.scope}</Badge></TD>
                         <TD className="max-w-xs">
-                          <code className="block truncate text-xs text-slate-500">
+                          <code className="block truncate text-xs text-zinc-500">
                             {v.filters && Object.keys(v.filters).length ? JSON.stringify(v.filters) : '—'}
                           </code>
                         </TD>
-                        <TD>{v.is_default ? <Badge tone="green">Default</Badge> : <span className="text-slate-600">—</span>}</TD>
+                        <TD>{v.is_default ? <Badge tone="green">Default</Badge> : <span className="text-zinc-600">—</span>}</TD>
                         <TD className="text-right">
                           <Button
                             variant="ghost"
@@ -553,17 +553,17 @@ export default function SettingsPage() {
           <Card>
             <CardHeader>
               <div className="flex flex-wrap items-center gap-3">
-                <h2 className="mr-auto text-sm font-semibold text-slate-200">Notifications</h2>
-                <div className="flex overflow-hidden rounded-lg border border-slate-700">
+                <h2 className="mr-auto text-sm font-semibold text-zinc-200">Notifications</h2>
+                <div className="flex overflow-hidden rounded-lg border border-zinc-700">
                   <button
                     onClick={() => setNotifFilter('all')}
-                    className={`px-3 py-1.5 text-sm ${notifFilter === 'all' ? 'bg-cyan-600 text-white' : 'bg-slate-950 text-slate-400 hover:text-slate-200'}`}
+                    className={`px-3 py-1.5 text-sm ${notifFilter === 'all' ? 'bg-lime-500 text-zinc-950' : 'bg-zinc-950 text-zinc-400 hover:text-zinc-200'}`}
                   >
                     All
                   </button>
                   <button
                     onClick={() => setNotifFilter('unread')}
-                    className={`px-3 py-1.5 text-sm ${notifFilter === 'unread' ? 'bg-cyan-600 text-white' : 'bg-slate-950 text-slate-400 hover:text-slate-200'}`}
+                    className={`px-3 py-1.5 text-sm ${notifFilter === 'unread' ? 'bg-lime-500 text-zinc-950' : 'bg-zinc-950 text-zinc-400 hover:text-zinc-200'}`}
                   >
                     Unread{unreadCount ? ` (${unreadCount})` : ''}
                   </button>
@@ -587,23 +587,23 @@ export default function SettingsPage() {
                   />
                 </div>
               ) : (
-                <ul className="divide-y divide-slate-800/70">
+                <ul className="divide-y divide-zinc-800/70">
                   {filteredNotifs.map((n) => (
                     <li
                       key={n.id}
-                      className={`flex items-start gap-3 px-5 py-4 ${n.read ? '' : 'bg-cyan-500/5'}`}
+                      className={`flex items-start gap-3 px-5 py-4 ${n.read ? '' : 'bg-lime-500/5'}`}
                     >
-                      <span className={`mt-1.5 h-2 w-2 flex-shrink-0 rounded-full ${n.read ? 'bg-slate-700' : 'bg-cyan-400'}`} />
+                      <span className={`mt-1.5 h-2 w-2 flex-shrink-0 rounded-full ${n.read ? 'bg-zinc-700' : 'bg-lime-400'}`} />
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="font-medium text-slate-100">{n.title}</span>
+                          <span className="font-medium text-zinc-100">{n.title}</span>
                           {n.kind && <Badge tone={kindTone(n.kind)}>{n.kind}</Badge>}
-                          <span className="ml-auto text-xs text-slate-500">{fmtDate(n.created_at)}</span>
+                          <span className="ml-auto text-xs text-zinc-500">{fmtDate(n.created_at)}</span>
                         </div>
-                        {n.body && <p className="mt-1 text-sm text-slate-400">{n.body}</p>}
+                        {n.body && <p className="mt-1 text-sm text-zinc-400">{n.body}</p>}
                         <div className="mt-2 flex items-center gap-3">
                           {n.link && (
-                            <a href={n.link} className="text-xs font-medium text-cyan-400 hover:text-cyan-300">
+                            <a href={n.link} className="text-xs font-medium text-lime-400 hover:text-lime-300">
                               View →
                             </a>
                           )}
@@ -611,7 +611,7 @@ export default function SettingsPage() {
                             <button
                               onClick={() => readNotif(n)}
                               disabled={busyNotif}
-                              className="text-xs font-medium text-slate-400 hover:text-slate-200 disabled:opacity-50"
+                              className="text-xs font-medium text-zinc-400 hover:text-zinc-200 disabled:opacity-50"
                             >
                               Mark read
                             </button>
@@ -628,7 +628,7 @@ export default function SettingsPage() {
           {/* Billing */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Billing</h2>
+              <h2 className="text-sm font-semibold text-zinc-200">Billing</h2>
             </CardHeader>
             <CardBody>
               {!stripeEnabled && (
@@ -643,29 +643,29 @@ export default function SettingsPage() {
               )}
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className={`rounded-xl border p-5 ${!isPro ? 'border-cyan-500/40 bg-cyan-500/5' : 'border-slate-800 bg-slate-950/40'}`}>
+                <div className={`rounded-xl border p-5 ${!isPro ? 'border-lime-500/40 bg-lime-500/5' : 'border-zinc-800 bg-zinc-950/40'}`}>
                   <div className="flex items-center justify-between">
-                    <h3 className="text-base font-semibold text-slate-100">Free</h3>
+                    <h3 className="text-base font-semibold text-zinc-100">Free</h3>
                     {!isPro && <Badge tone="cyan">Current</Badge>}
                   </div>
-                  <p className="mt-1 text-2xl font-semibold text-slate-100">$0<span className="text-sm font-normal text-slate-500">/mo</span></p>
-                  <ul className="mt-3 space-y-1 text-sm text-slate-400">
+                  <p className="mt-1 text-2xl font-semibold text-zinc-100">$0<span className="text-sm font-normal text-zinc-500">/mo</span></p>
+                  <ul className="mt-3 space-y-1 text-sm text-zinc-400">
                     <li>Single cloud account</li>
                     <li>Core detectors</li>
                     <li>Manual analysis runs</li>
                   </ul>
                 </div>
 
-                <div className={`rounded-xl border p-5 ${isPro ? 'border-cyan-500/40 bg-cyan-500/5' : 'border-slate-800 bg-slate-950/40'}`}>
+                <div className={`rounded-xl border p-5 ${isPro ? 'border-lime-500/40 bg-lime-500/5' : 'border-zinc-800 bg-zinc-950/40'}`}>
                   <div className="flex items-center justify-between">
-                    <h3 className="text-base font-semibold text-slate-100">Pro</h3>
+                    <h3 className="text-base font-semibold text-zinc-100">Pro</h3>
                     {isPro && <Badge tone="cyan">Current</Badge>}
                   </div>
-                  <p className="mt-1 text-2xl font-semibold text-slate-100">
+                  <p className="mt-1 text-2xl font-semibold text-zinc-100">
                     {billing?.plan && billing.plan.id === 'pro' ? money(billing.plan.price_cents) : '$49'}
-                    <span className="text-sm font-normal text-slate-500">/mo</span>
+                    <span className="text-sm font-normal text-zinc-500">/mo</span>
                   </p>
-                  <ul className="mt-3 space-y-1 text-sm text-slate-400">
+                  <ul className="mt-3 space-y-1 text-sm text-zinc-400">
                     <li>Unlimited accounts</li>
                     <li>Scheduled analysis &amp; alerts</li>
                     <li>Forecasting &amp; allocation</li>
@@ -689,7 +689,7 @@ export default function SettingsPage() {
                   </Badge>
                 )}
                 {billing?.subscription?.current_period_end && (
-                  <span className="text-xs text-slate-500">
+                  <span className="text-xs text-zinc-500">
                     Renews {fmtDate(billing.subscription.current_period_end)}
                   </span>
                 )}
@@ -719,14 +719,14 @@ export default function SettingsPage() {
               value={viewForm.name}
               onChange={(e) => setViewForm({ ...viewForm, name: e.target.value })}
               placeholder="e.g. Cold AWS buckets"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-lime-500 focus:outline-none"
             />
           </Field>
           <Field label="Scope">
             <select
               value={viewForm.scope}
               onChange={(e) => setViewForm({ ...viewForm, scope: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               {VIEW_SCOPES.map((s) => (
                 <option key={s} value={s}>{s}</option>
@@ -739,15 +739,15 @@ export default function SettingsPage() {
               onChange={(e) => setViewForm({ ...viewForm, filters: e.target.value })}
               rows={4}
               placeholder='{"tier":"standard","temperature":"cold"}'
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-200 placeholder:text-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 font-mono text-xs text-zinc-200 placeholder:text-zinc-600 focus:border-lime-500 focus:outline-none"
             />
           </Field>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={viewForm.is_default}
               onChange={(e) => setViewForm({ ...viewForm, is_default: e.target.checked })}
-              className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-cyan-500"
+              className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-lime-500"
             />
             Set as default view for this scope
           </label>
@@ -760,9 +760,9 @@ export default function SettingsPage() {
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="mb-1 flex items-center justify-between text-xs font-medium uppercase tracking-wide text-slate-500">
+      <label className="mb-1 flex items-center justify-between text-xs font-medium uppercase tracking-wide text-zinc-500">
         <span>{label}</span>
-        {hint && <span className="font-normal normal-case text-slate-600">{hint}</span>}
+        {hint && <span className="font-normal normal-case text-zinc-600">{hint}</span>}
       </label>
       {children}
     </div>
@@ -786,10 +786,10 @@ function WeightSlider({
   return (
     <div>
       <div className="mb-1 flex items-center justify-between text-sm">
-        <span className="text-slate-300">{label}</span>
-        <span className="tabular-nums text-slate-400">
+        <span className="text-zinc-300">{label}</span>
+        <span className="tabular-nums text-zinc-400">
           {value.toFixed(2)}
-          <span className="ml-2 text-xs text-slate-600">{(normalized * 100).toFixed(0)}% weight</span>
+          <span className="ml-2 text-xs text-zinc-600">{(normalized * 100).toFixed(0)}% weight</span>
         </span>
       </div>
       <input

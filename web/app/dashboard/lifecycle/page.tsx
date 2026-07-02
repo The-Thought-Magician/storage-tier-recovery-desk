@@ -206,8 +206,8 @@ export default function LifecyclePage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Lifecycle Modeler</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-semibold text-zinc-100">Lifecycle Modeler</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Build tiering rule sets, simulate them against your inventory, and compare projected savings before committing to a recovery action.
           </p>
         </div>
@@ -233,7 +233,7 @@ export default function LifecyclePage() {
           {compareModels.length > 0 && (
             <Card>
               <CardHeader>
-                <h2 className="text-sm font-semibold text-slate-200">Comparison</h2>
+                <h2 className="text-sm font-semibold text-zinc-200">Comparison</h2>
               </CardHeader>
               <CardBody>
                 <div className="space-y-4">
@@ -242,16 +242,16 @@ export default function LifecyclePage() {
                     return (
                       <div key={m.id}>
                         <div className="mb-1 flex items-center justify-between text-sm">
-                          <span className="font-medium text-slate-200">{m.name}</span>
+                          <span className="font-medium text-zinc-200">{m.name}</span>
                           <span className="tabular-nums text-emerald-300">{money(sav)}/mo</span>
                         </div>
-                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-zinc-800">
                           <div
-                            className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-emerald-400"
+                            className="h-full rounded-full bg-gradient-to-r from-lime-500 to-emerald-400"
                             style={{ width: `${(sav / maxSavings) * 100}%` }}
                           />
                         </div>
-                        <div className="mt-1 flex gap-4 text-xs text-slate-500">
+                        <div className="mt-1 flex gap-4 text-xs text-zinc-500">
                           <span>{num(m.simulated_assets_affected)} assets</span>
                           <span>{num(m.simulated_data_moved_gb)} GB moved</span>
                           {!m.last_simulated_at && <span className="text-amber-400">not yet simulated</span>}
@@ -275,12 +275,12 @@ export default function LifecyclePage() {
               {models.map((m) => {
                 const isSel = selected.includes(m.id)
                 return (
-                  <Card key={m.id} className={isSel ? 'ring-1 ring-cyan-500/50' : ''}>
+                  <Card key={m.id} className={isSel ? 'ring-1 ring-lime-500/50' : ''}>
                     <CardHeader>
                       <div className="flex items-start justify-between gap-3">
                         <div>
-                          <h3 className="text-base font-semibold text-slate-100">{m.name}</h3>
-                          <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                          <h3 className="text-base font-semibold text-zinc-100">{m.name}</h3>
+                          <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-zinc-500">
                             <Badge tone="slate">{accountName(m.account_id)}</Badge>
                             <span>{m.rules.length} rule{m.rules.length === 1 ? '' : 's'}</span>
                             {m.last_simulated_at ? (
@@ -290,12 +290,12 @@ export default function LifecyclePage() {
                             )}
                           </div>
                         </div>
-                        <label className="flex shrink-0 items-center gap-1.5 text-xs text-slate-400">
+                        <label className="flex shrink-0 items-center gap-1.5 text-xs text-zinc-400">
                           <input
                             type="checkbox"
                             checked={isSel}
                             onChange={() => toggleSelect(m.id)}
-                            className="h-4 w-4 rounded border-slate-700 bg-slate-950 accent-cyan-500"
+                            className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 accent-lime-500"
                           />
                           Compare
                         </label>
@@ -303,21 +303,21 @@ export default function LifecyclePage() {
                     </CardHeader>
                     <CardBody className="space-y-4">
                       <div className="grid grid-cols-3 gap-3 text-center">
-                        <div className="rounded-lg bg-slate-950 px-2 py-2">
-                          <div className="text-xs text-slate-500">Savings/mo</div>
+                        <div className="rounded-lg bg-zinc-950 px-2 py-2">
+                          <div className="text-xs text-zinc-500">Savings/mo</div>
                           <div className="text-sm font-semibold tabular-nums text-emerald-300">{money(m.simulated_monthly_savings)}</div>
                         </div>
-                        <div className="rounded-lg bg-slate-950 px-2 py-2">
-                          <div className="text-xs text-slate-500">Assets</div>
-                          <div className="text-sm font-semibold tabular-nums text-slate-200">{num(m.simulated_assets_affected)}</div>
+                        <div className="rounded-lg bg-zinc-950 px-2 py-2">
+                          <div className="text-xs text-zinc-500">Assets</div>
+                          <div className="text-sm font-semibold tabular-nums text-zinc-200">{num(m.simulated_assets_affected)}</div>
                         </div>
-                        <div className="rounded-lg bg-slate-950 px-2 py-2">
-                          <div className="text-xs text-slate-500">Data Moved</div>
-                          <div className="text-sm font-semibold tabular-nums text-slate-200">{num(m.simulated_data_moved_gb)} GB</div>
+                        <div className="rounded-lg bg-zinc-950 px-2 py-2">
+                          <div className="text-xs text-zinc-500">Data Moved</div>
+                          <div className="text-sm font-semibold tabular-nums text-zinc-200">{num(m.simulated_data_moved_gb)} GB</div>
                         </div>
                       </div>
 
-                      <div className="rounded-lg border border-slate-800 bg-slate-950/50">
+                      <div className="rounded-lg border border-zinc-800 bg-zinc-950/50">
                         <Table>
                           <THead>
                             <TR>
@@ -381,20 +381,20 @@ export default function LifecyclePage() {
           )}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Archive cold buckets"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Account</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Account</label>
               <select
                 value={accountId}
                 onChange={(e) => setAccountId(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               >
                 <option value="">All accounts</option>
                 {accounts.map((a) => (
@@ -406,14 +406,14 @@ export default function LifecyclePage() {
 
           <div>
             <div className="mb-2 flex items-center justify-between">
-              <label className="text-xs font-medium uppercase tracking-wide text-slate-500">Rules</label>
+              <label className="text-xs font-medium uppercase tracking-wide text-zinc-500">Rules</label>
               <Button variant="ghost" className="px-2 py-1" onClick={addRule}>+ Add rule</Button>
             </div>
             <div className="space-y-3">
               {rules.map((r, i) => (
-                <div key={i} className="rounded-lg border border-slate-800 bg-slate-950/50 p-3">
+                <div key={i} className="rounded-lg border border-zinc-800 bg-zinc-950/50 p-3">
                   <div className="mb-2 flex items-center justify-between">
-                    <span className="text-xs font-medium text-slate-400">Rule {i + 1}</span>
+                    <span className="text-xs font-medium text-zinc-400">Rule {i + 1}</span>
                     {rules.length > 1 && (
                       <button onClick={() => removeRule(i)} className="text-xs text-rose-400 hover:text-rose-300">Remove</button>
                     )}
@@ -422,13 +422,13 @@ export default function LifecyclePage() {
                     <Select label="Match Tier" value={r.match_tier || ''} onChange={(v) => updateRule(i, { match_tier: v })} options={['', ...TIERS]} />
                     <Select label="Match Temp" value={r.match_temperature || ''} onChange={(v) => updateRule(i, { match_temperature: v })} options={['', ...TEMPS]} />
                     <div>
-                      <label className="mb-1 block text-[10px] uppercase tracking-wide text-slate-600">Older Than (d)</label>
+                      <label className="mb-1 block text-[10px] uppercase tracking-wide text-zinc-600">Older Than (d)</label>
                       <input
                         type="number"
                         min={0}
                         value={r.older_than_days ?? ''}
                         onChange={(e) => updateRule(i, { older_than_days: e.target.value === '' ? undefined : Number(e.target.value) })}
-                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                        className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-2 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                       />
                     </div>
                     <Select label="Action" value={r.action || 'transition'} onChange={(v) => updateRule(i, { action: v })} options={ACTIONS} />
@@ -465,12 +465,12 @@ function Select({
 }) {
   return (
     <div>
-      <label className="mb-1 block text-[10px] uppercase tracking-wide text-slate-600">{label}</label>
+      <label className="mb-1 block text-[10px] uppercase tracking-wide text-zinc-600">{label}</label>
       <select
         value={value}
         disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none disabled:opacity-50"
+        className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-2 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none disabled:opacity-50"
       >
         {options.map((o) => (
           <option key={o} value={o}>{o === '' ? 'any' : o}</option>

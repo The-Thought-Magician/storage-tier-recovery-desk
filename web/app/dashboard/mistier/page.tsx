@@ -168,8 +168,8 @@ export default function MistierPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Mis-Tier Findings</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Mis-Tier Findings</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Assets sitting on a more expensive storage class than their access pattern warrants. Promote a finding to
             queue a re-tier action on the recovery worksheet.
           </p>
@@ -206,12 +206,12 @@ export default function MistierPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search title, detail, action..."
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
             />
             <select
               value={tierFilter}
               onChange={(e) => setTierFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               <option value="all">All target tiers</option>
               {tiers.map((t) => (
@@ -223,16 +223,16 @@ export default function MistierPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as 'priority' | 'savings' | 'risk')}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               <option value="priority">Sort: Priority</option>
               <option value="savings">Sort: Savings</option>
               <option value="risk">Sort: Lowest risk</option>
             </select>
           </div>
-          <div className="text-sm text-slate-500">
-            <span className="font-medium text-slate-300">{filtered.length}</span> shown ·{' '}
-            <span className="font-medium text-cyan-300">{money(filteredMonthly)}</span>/mo
+          <div className="text-sm text-zinc-500">
+            <span className="font-medium text-zinc-300">{filtered.length}</span> shown ·{' '}
+            <span className="font-medium text-lime-300">{money(filteredMonthly)}</span>/mo
           </div>
         </CardHeader>
         <CardBody className="p-0">
@@ -286,20 +286,20 @@ export default function MistierPage() {
                   return (
                     <TR key={f.id}>
                       <TD>
-                        <div className="font-medium text-slate-100">{f.title || 'Mis-tier finding'}</div>
-                        {f.detail && <div className="mt-0.5 max-w-md text-xs text-slate-500">{f.detail}</div>}
+                        <div className="font-medium text-zinc-100">{f.title || 'Mis-tier finding'}</div>
+                        {f.detail && <div className="mt-0.5 max-w-md text-xs text-zinc-500">{f.detail}</div>}
                         {f.recommended_action && (
-                          <div className="mt-1 text-xs text-cyan-400/80">{f.recommended_action}</div>
+                          <div className="mt-1 text-xs text-lime-400/80">{f.recommended_action}</div>
                         )}
                       </TD>
-                      <TD>{f.target_tier ? <Badge tone="blue">{f.target_tier}</Badge> : <span className="text-slate-600">—</span>}</TD>
-                      <TD className="text-right font-medium tabular-nums text-cyan-300">{money2(f.monthly_savings)}</TD>
-                      <TD className="text-right tabular-nums text-slate-400">{money(f.annual_savings)}</TD>
+                      <TD>{f.target_tier ? <Badge tone="blue">{f.target_tier}</Badge> : <span className="text-zinc-600">—</span>}</TD>
+                      <TD className="text-right font-medium tabular-nums text-lime-300">{money2(f.monthly_savings)}</TD>
+                      <TD className="text-right tabular-nums text-zinc-400">{money(f.annual_savings)}</TD>
                       <TD className="text-center">
                         <Badge tone={riskTone(f.risk_score)}>{Number(f.risk_score || 0).toFixed(0)}</Badge>
                       </TD>
-                      <TD className="text-center tabular-nums text-slate-400">{Number(f.effort_score || 0).toFixed(0)}</TD>
-                      <TD className="text-center tabular-nums font-medium text-slate-200">
+                      <TD className="text-center tabular-nums text-zinc-400">{Number(f.effort_score || 0).toFixed(0)}</TD>
+                      <TD className="text-center tabular-nums font-medium text-zinc-200">
                         {Number(f.priority_score || 0).toFixed(0)}
                       </TD>
                       <TD className="text-center">
@@ -342,9 +342,9 @@ export default function MistierPage() {
       >
         {promoting && (
           <div className="space-y-4">
-            <div className="rounded-lg border border-slate-800 bg-slate-950 px-4 py-3">
-              <div className="font-medium text-slate-100">{promoting.title || 'Mis-tier finding'}</div>
-              {promoting.detail && <div className="mt-1 text-xs text-slate-500">{promoting.detail}</div>}
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3">
+              <div className="font-medium text-zinc-100">{promoting.title || 'Mis-tier finding'}</div>
+              {promoting.detail && <div className="mt-1 text-xs text-zinc-500">{promoting.detail}</div>}
               <div className="mt-3 flex flex-wrap gap-2 text-xs">
                 {promoting.target_tier && <Badge tone="blue">→ {promoting.target_tier}</Badge>}
                 <Badge tone="cyan">{money2(promoting.monthly_savings)}/mo</Badge>
@@ -353,22 +353,22 @@ export default function MistierPage() {
               </div>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Owner</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Owner</label>
               <input
                 value={owner}
                 onChange={(e) => setOwner(e.target.value)}
                 placeholder="Assign an owner (optional)"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Notes</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Notes</label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 rows={3}
                 placeholder="Context for the recovery action (optional)"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             {formError && (

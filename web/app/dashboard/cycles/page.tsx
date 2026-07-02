@@ -237,8 +237,8 @@ export default function CyclesPage() {
     <div className="space-y-6">
       <header className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Recovery Cycles</h1>
-          <p className="mt-1 text-sm text-slate-500">Plan, run, and close out savings sprints against targets.</p>
+          <h1 className="text-xl font-semibold text-zinc-100">Recovery Cycles</h1>
+          <p className="mt-1 text-sm text-zinc-500">Plan, run, and close out savings sprints against targets.</p>
         </div>
         <Button onClick={openCreate} disabled={loading}>New cycle</Button>
       </header>
@@ -264,20 +264,20 @@ export default function CyclesPage() {
 
           <Card>
             <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-              <h2 className="text-sm font-semibold text-slate-200">Cycle board</h2>
+              <h2 className="text-sm font-semibold text-zinc-200">Cycle board</h2>
               <div className="flex flex-wrap items-center gap-2">
                 <input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search cycles…"
-                  className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                  className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
                 />
-                <div className="flex overflow-hidden rounded-lg border border-slate-700">
+                <div className="flex overflow-hidden rounded-lg border border-zinc-700">
                   {(['all', ...STATUSES] as const).map((s) => (
                     <button
                       key={s}
                       onClick={() => setStatusFilter(s)}
-                      className={`px-3 py-1.5 text-xs font-medium capitalize transition-colors ${statusFilter === s ? 'bg-cyan-600 text-white' : 'bg-slate-950 text-slate-400 hover:bg-slate-800'}`}
+                      className={`px-3 py-1.5 text-xs font-medium capitalize transition-colors ${statusFilter === s ? 'bg-lime-500 text-zinc-950' : 'bg-zinc-950 text-zinc-400 hover:bg-zinc-800'}`}
                     >
                       {s}
                     </button>
@@ -300,24 +300,24 @@ export default function CyclesPage() {
                     return (
                       <div
                         key={c.id}
-                        className={`rounded-xl border bg-slate-900/60 p-4 transition-colors hover:border-cyan-500/40 ${detailId === c.id ? 'border-cyan-500/50' : 'border-slate-800'}`}
+                        className={`rounded-xl border bg-zinc-900/60 p-4 transition-colors hover:border-lime-500/40 ${detailId === c.id ? 'border-lime-500/50' : 'border-zinc-800'}`}
                       >
                         <div className="flex items-start justify-between gap-2">
                           <button onClick={() => void openDetail(c.id)} className="text-left">
-                            <h3 className="text-sm font-semibold text-slate-100 hover:text-cyan-300">{c.name}</h3>
+                            <h3 className="text-sm font-semibold text-zinc-100 hover:text-lime-300">{c.name}</h3>
                           </button>
                           <Badge tone={statusTone(c.status)} className="capitalize">{c.status}</Badge>
                         </div>
-                        <div className="mt-2 text-xs text-slate-500">
+                        <div className="mt-2 text-xs text-zinc-500">
                           {fmtDate(c.start_date)} → {fmtDate(c.end_date)}
                         </div>
                         <div className="mt-3 space-y-1">
-                          <div className="flex items-center justify-between text-xs text-slate-400">
+                          <div className="flex items-center justify-between text-xs text-zinc-400">
                             <span>{money(realized)} of {money(c.target_monthly_savings)}</span>
-                            <span className="tabular-nums text-cyan-300">{pct.toFixed(0)}%</span>
+                            <span className="tabular-nums text-lime-300">{pct.toFixed(0)}%</span>
                           </div>
-                          <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
-                            <div className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500" style={{ width: `${pct}%` }} />
+                          <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+                            <div className="h-full rounded-full bg-gradient-to-r from-lime-500 to-emerald-500" style={{ width: `${pct}%` }} />
                           </div>
                         </div>
                         <div className="mt-4 flex items-center gap-2">
@@ -339,7 +339,7 @@ export default function CyclesPage() {
           {detailId && (
             <Card>
               <CardHeader className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-slate-200">
+                <h2 className="text-sm font-semibold text-zinc-200">
                   Cycle detail{detail ? ` — ${detail.cycle.name}` : ''}
                 </h2>
                 <Button variant="ghost" className="px-2.5 py-1 text-xs" onClick={() => { setDetail(null); setDetailId(null) }}>Close</Button>
@@ -366,9 +366,9 @@ export default function CyclesPage() {
                     </div>
 
                     <div>
-                      <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Actions in cycle</h3>
+                      <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">Actions in cycle</h3>
                       {detail.actions.length === 0 ? (
-                        <p className="rounded-lg border border-dashed border-slate-800 px-4 py-6 text-center text-sm text-slate-500">No actions assigned to this cycle.</p>
+                        <p className="rounded-lg border border-dashed border-zinc-800 px-4 py-6 text-center text-sm text-zinc-500">No actions assigned to this cycle.</p>
                       ) : (
                         <Table>
                           <THead>
@@ -383,10 +383,10 @@ export default function CyclesPage() {
                           <TBody>
                             {detail.actions.map((a) => (
                               <TR key={a.id}>
-                                <TD className="text-slate-200">{a.title}</TD>
-                                <TD className="capitalize text-slate-400">{a.action_type?.replace(/_/g, ' ')}</TD>
-                                <TD className="text-slate-400">{a.owner || '—'}</TD>
-                                <TD className="text-right tabular-nums text-cyan-300">{money(a.monthly_savings)}</TD>
+                                <TD className="text-zinc-200">{a.title}</TD>
+                                <TD className="capitalize text-zinc-400">{a.action_type?.replace(/_/g, ' ')}</TD>
+                                <TD className="text-zinc-400">{a.owner || '—'}</TD>
+                                <TD className="text-right tabular-nums text-lime-300">{money(a.monthly_savings)}</TD>
                                 <TD><Badge tone={a.status === 'done' || a.status === 'completed' || a.status === 'realized' ? 'green' : 'slate'} className="capitalize">{a.status?.replace(/_/g, ' ')}</Badge></TD>
                               </TR>
                             ))}
@@ -396,9 +396,9 @@ export default function CyclesPage() {
                     </div>
 
                     <div>
-                      <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Realized savings</h3>
+                      <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">Realized savings</h3>
                       {detail.realized.length === 0 ? (
-                        <p className="rounded-lg border border-dashed border-slate-800 px-4 py-6 text-center text-sm text-slate-500">No realized savings recorded for this cycle yet.</p>
+                        <p className="rounded-lg border border-dashed border-zinc-800 px-4 py-6 text-center text-sm text-zinc-500">No realized savings recorded for this cycle yet.</p>
                       ) : (
                         <Table>
                           <THead>
@@ -413,7 +413,7 @@ export default function CyclesPage() {
                               const v = num(r.variance)
                               return (
                                 <TR key={r.id}>
-                                  <TD className="text-right tabular-nums text-cyan-300">{money(r.modeled_monthly)}</TD>
+                                  <TD className="text-right tabular-nums text-lime-300">{money(r.modeled_monthly)}</TD>
                                   <TD className="text-right tabular-nums text-emerald-300">{money(r.realized_monthly)}</TD>
                                   <TD className="text-right tabular-nums"><Badge tone={v >= 0 ? 'green' : 'rose'}>{v >= 0 ? '+' : ''}{money(v)}</Badge></TD>
                                 </TR>
@@ -425,7 +425,7 @@ export default function CyclesPage() {
                     </div>
 
                     {detail.cycle.status !== 'closed' && (
-                      <div className="flex justify-end border-t border-slate-800 pt-4">
+                      <div className="flex justify-end border-t border-zinc-800 pt-4">
                         <Button onClick={() => void closeOut(detail.cycle)}>Close out cycle</Button>
                       </div>
                     )}
@@ -451,51 +451,51 @@ export default function CyclesPage() {
         <div className="space-y-4">
           {formError && <p className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{formError}</p>}
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</span>
             <input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="Q3 cold-tier sweep"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             />
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Target monthly savings</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Target monthly savings</span>
             <input
               type="number"
               step="0.01"
               value={form.target_monthly_savings}
               onChange={(e) => setForm((f) => ({ ...f, target_monthly_savings: e.target.value }))}
               placeholder="0.00"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             />
           </label>
           <div className="grid grid-cols-2 gap-3">
             <label className="block">
-              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Start date</span>
+              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Start date</span>
               <input
                 type="date"
                 value={form.start_date}
                 onChange={(e) => setForm((f) => ({ ...f, start_date: e.target.value }))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               />
             </label>
             <label className="block">
-              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">End date</span>
+              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">End date</span>
               <input
                 type="date"
                 value={form.end_date}
                 onChange={(e) => setForm((f) => ({ ...f, end_date: e.target.value }))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               />
             </label>
           </div>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Status</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Status</span>
             <select
               value={form.status}
               onChange={(e) => setForm((f) => ({ ...f, status: e.target.value as CycleStatus }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 capitalize focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 capitalize focus:border-lime-500 focus:outline-none"
             >
               {STATUSES.map((s) => (
                 <option key={s} value={s}>{s}</option>

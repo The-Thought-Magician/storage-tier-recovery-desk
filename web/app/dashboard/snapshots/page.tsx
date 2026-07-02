@@ -246,8 +246,8 @@ export default function SnapshotsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Snapshots &amp; Backups</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Snapshots &amp; Backups</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Carrying cost of snapshot and backup data, incremental chains by source, and prune candidates you can
             promote to the recovery worksheet.
           </p>
@@ -280,16 +280,16 @@ export default function SnapshotsPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex gap-1 rounded-lg border border-slate-800 bg-slate-950 p-1">
+          <div className="flex gap-1 rounded-lg border border-zinc-800 bg-zinc-950 p-1">
             {tabs.map((t) => (
               <button
                 key={t.key}
                 onClick={() => setTab(t.key)}
                 className={`rounded-md px-3 py-1.5 text-sm transition-colors ${
-                  tab === t.key ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-400 hover:text-slate-200'
+                  tab === t.key ? 'bg-lime-500/15 font-medium text-lime-300' : 'text-zinc-400 hover:text-zinc-200'
                 }`}
               >
-                {t.label} <span className="text-xs text-slate-600">({t.count})</span>
+                {t.label} <span className="text-xs text-zinc-600">({t.count})</span>
               </button>
             ))}
           </div>
@@ -298,14 +298,14 @@ export default function SnapshotsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search snapshots..."
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
             />
           )}
           {tab === 'prune' && selectedCandidates.length > 0 && (
             <div className="flex items-center gap-3">
-              <span className="text-sm text-slate-400">
+              <span className="text-sm text-zinc-400">
                 {selectedCandidates.length} selected ·{' '}
-                <span className="font-medium text-cyan-300">{money(selectedSavings)}</span>/mo
+                <span className="font-medium text-lime-300">{money(selectedSavings)}</span>/mo
               </span>
               <Button onClick={promoteSelected} disabled={submitting} className="px-3 py-1.5 text-xs">
                 {submitting ? 'Promoting...' : 'Promote selected'}
@@ -361,16 +361,16 @@ export default function SnapshotsPage() {
                   {filteredLedger.map((s) => (
                     <TR key={s.id}>
                       <TD>
-                        <div className="font-medium text-slate-100">{s.name || s.external_id || s.id}</div>
-                        <div className="mt-0.5 text-xs text-slate-600">{s.asset_type}</div>
+                        <div className="font-medium text-zinc-100">{s.name || s.external_id || s.id}</div>
+                        <div className="mt-0.5 text-xs text-zinc-600">{s.asset_type}</div>
                       </TD>
-                      <TD className="text-slate-400">{s.provider || '—'}</TD>
-                      <TD className="text-slate-400">{s.region || '—'}</TD>
+                      <TD className="text-zinc-400">{s.provider || '—'}</TD>
+                      <TD className="text-zinc-400">{s.region || '—'}</TD>
                       <TD>{s.current_tier ? <Badge tone="slate">{s.current_tier}</Badge> : '—'}</TD>
                       <TD className="text-center">
                         {s.is_incremental ? <Badge tone="violet">incremental</Badge> : <Badge tone="blue">full</Badge>}
                       </TD>
-                      <TD className="text-right tabular-nums text-slate-400">{bytes(s.size_bytes)}</TD>
+                      <TD className="text-right tabular-nums text-zinc-400">{bytes(s.size_bytes)}</TD>
                       <TD className="text-right tabular-nums font-medium text-amber-300">{money2(s.monthly_cost)}</TD>
                     </TR>
                   ))}
@@ -383,7 +383,7 @@ export default function SnapshotsPage() {
                 <EmptyState title="No snapshot chains" description="No incremental lineage was detected in the current estate." icon="⛓" />
               </div>
             ) : (
-              <div className="divide-y divide-slate-800/70">
+              <div className="divide-y divide-zinc-800/70">
                 {chains.map((c, idx) => {
                   const key = c.source_asset_id || `chain-${idx}`
                   const isOpen = !!expanded[key]
@@ -392,15 +392,15 @@ export default function SnapshotsPage() {
                     <div key={key}>
                       <button
                         onClick={() => setExpanded((e) => ({ ...e, [key]: !e[key] }))}
-                        className="flex w-full items-center justify-between px-5 py-3 text-left hover:bg-slate-800/40"
+                        className="flex w-full items-center justify-between px-5 py-3 text-left hover:bg-zinc-800/40"
                       >
                         <div className="flex items-center gap-3">
-                          <span className="text-slate-500">{isOpen ? '▾' : '▸'}</span>
+                          <span className="text-zinc-500">{isOpen ? '▾' : '▸'}</span>
                           <div>
-                            <div className="font-medium text-slate-100">
+                            <div className="font-medium text-zinc-100">
                               {c.source_name || c.source_asset_id || 'Unsourced chain'}
                             </div>
-                            <div className="text-xs text-slate-600">
+                            <div className="text-xs text-zinc-600">
                               {Number(c.count ?? list.length)} snapshot{Number(c.count ?? list.length) === 1 ? '' : 's'} ·{' '}
                               {bytes(c.total_size_bytes ?? list.reduce((a, s) => a + Number(s.size_bytes || 0), 0))}
                             </div>
@@ -411,7 +411,7 @@ export default function SnapshotsPage() {
                         </Badge>
                       </button>
                       {isOpen && list.length > 0 && (
-                        <div className="bg-slate-950/50 px-5 pb-3">
+                        <div className="bg-zinc-950/50 px-5 pb-3">
                           <Table>
                             <THead>
                               <TR>
@@ -425,7 +425,7 @@ export default function SnapshotsPage() {
                             <TBody>
                               {list.map((s) => (
                                 <TR key={s.id}>
-                                  <TD className="text-slate-200">{s.name || s.external_id || s.id}</TD>
+                                  <TD className="text-zinc-200">{s.name || s.external_id || s.id}</TD>
                                   <TD className="text-center">
                                     {s.is_incremental ? (
                                       <Badge tone="violet">incremental</Badge>
@@ -433,9 +433,9 @@ export default function SnapshotsPage() {
                                       <Badge tone="blue">full</Badge>
                                     )}
                                   </TD>
-                                  <TD className="text-right tabular-nums text-slate-400">{bytes(s.size_bytes)}</TD>
+                                  <TD className="text-right tabular-nums text-zinc-400">{bytes(s.size_bytes)}</TD>
                                   <TD className="text-right tabular-nums text-amber-300">{money2(s.monthly_cost)}</TD>
-                                  <TD className="text-xs text-slate-500">
+                                  <TD className="text-xs text-zinc-500">
                                     {s.asset_created_at ? new Date(s.asset_created_at).toLocaleDateString() : '—'}
                                   </TD>
                                 </TR>
@@ -483,19 +483,19 @@ export default function SnapshotsPage() {
                           checked={!!selected[k]}
                           disabled={done}
                           onChange={() => toggleSelect(c)}
-                          className="h-4 w-4 rounded border-slate-600 bg-slate-950 accent-cyan-500"
+                          className="h-4 w-4 rounded border-zinc-600 bg-zinc-950 accent-lime-500"
                         />
                       </TD>
                       <TD>
-                        <div className="font-medium text-slate-100">{c.name || c.asset_id || k}</div>
+                        <div className="font-medium text-zinc-100">{c.name || c.asset_id || k}</div>
                       </TD>
                       <TD>{c.reason ? <Badge tone={reasonTone(c.reason)}>{c.reason}</Badge> : '—'}</TD>
                       <TD>{c.current_tier ? <Badge tone="slate">{c.current_tier}</Badge> : '—'}</TD>
-                      <TD className="text-right tabular-nums text-slate-400">
+                      <TD className="text-right tabular-nums text-zinc-400">
                         {c.age_days != null ? `${Number(c.age_days).toFixed(0)}d` : '—'}
                       </TD>
-                      <TD className="text-right tabular-nums text-slate-400">{bytes(c.size_bytes)}</TD>
-                      <TD className="text-right tabular-nums font-medium text-cyan-300">
+                      <TD className="text-right tabular-nums text-zinc-400">{bytes(c.size_bytes)}</TD>
+                      <TD className="text-right tabular-nums font-medium text-lime-300">
                         {money2(c.monthly_savings ?? c.monthly_cost)}
                       </TD>
                       <TD className="text-right">
@@ -533,8 +533,8 @@ export default function SnapshotsPage() {
       >
         {promoting && (
           <div className="space-y-4">
-            <div className="rounded-lg border border-slate-800 bg-slate-950 px-4 py-3">
-              <div className="font-medium text-slate-100">{promoting.name || 'Snapshot'}</div>
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3">
+              <div className="font-medium text-zinc-100">{promoting.name || 'Snapshot'}</div>
               <div className="mt-3 flex flex-wrap gap-2 text-xs">
                 {promoting.reason && <Badge tone={reasonTone(promoting.reason)}>{promoting.reason}</Badge>}
                 {promoting.current_tier && <Badge tone="slate">{promoting.current_tier}</Badge>}
@@ -543,22 +543,22 @@ export default function SnapshotsPage() {
               </div>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Owner</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Owner</label>
               <input
                 value={owner}
                 onChange={(e) => setOwner(e.target.value)}
                 placeholder="Assign an owner (optional)"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Notes</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Notes</label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 rows={3}
                 placeholder={promoting.reason || 'Context for the prune action (optional)'}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             {formError && (

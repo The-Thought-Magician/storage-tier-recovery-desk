@@ -230,8 +230,8 @@ export default function InventoryPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Storage Inventory</h1>
-          <p className="mt-1 text-sm text-slate-500">Every storage asset across your cloud accounts, with tier, size, and monthly cost.</p>
+          <h1 className="text-xl font-semibold text-zinc-100">Storage Inventory</h1>
+          <p className="mt-1 text-sm text-zinc-500">Every storage asset across your cloud accounts, with tier, size, and monthly cost.</p>
         </div>
         <Button variant="secondary" onClick={() => setSaveOpen(true)}>
           Save current view
@@ -246,14 +246,14 @@ export default function InventoryPage() {
 
       {views.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Saved views</span>
+          <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">Saved views</span>
           {views.map((v) => (
             <span
               key={v.id}
               className={`group inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs ${
                 activeView === v.id
-                  ? 'border-cyan-500/40 bg-cyan-500/10 text-cyan-300'
-                  : 'border-slate-700 bg-slate-800/60 text-slate-300 hover:border-slate-600'
+                  ? 'border-lime-500/40 bg-lime-500/10 text-lime-300'
+                  : 'border-zinc-700 bg-zinc-800/60 text-zinc-300 hover:border-zinc-600'
               }`}
             >
               <button onClick={() => applyView(v)} className="font-medium">
@@ -262,7 +262,7 @@ export default function InventoryPage() {
               </button>
               <button
                 onClick={() => removeView(v.id)}
-                className="text-slate-500 hover:text-rose-400"
+                className="text-zinc-500 hover:text-rose-400"
                 aria-label={`Delete view ${v.name}`}
               >
                 ✕
@@ -276,20 +276,20 @@ export default function InventoryPage() {
         <CardHeader>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-5">
             <div className="md:col-span-1">
-              <label className="mb-1 block text-xs text-slate-500">Search</label>
+              <label className="mb-1 block text-xs text-zinc-500">Search</label>
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Name, ARN, region…"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs text-slate-500">Account</label>
+              <label className="mb-1 block text-xs text-zinc-500">Account</label>
               <select
                 value={filters.account_id}
                 onChange={(e) => applyFilters({ ...filters, account_id: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               >
                 <option value="">All accounts</option>
                 {accounts.map((a) => (
@@ -300,11 +300,11 @@ export default function InventoryPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs text-slate-500">Asset type</label>
+              <label className="mb-1 block text-xs text-zinc-500">Asset type</label>
               <select
                 value={filters.asset_type}
                 onChange={(e) => applyFilters({ ...filters, asset_type: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               >
                 <option value="">All types</option>
                 {ASSET_TYPES.map((t) => (
@@ -315,11 +315,11 @@ export default function InventoryPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs text-slate-500">Tier</label>
+              <label className="mb-1 block text-xs text-zinc-500">Tier</label>
               <select
                 value={filters.tier}
                 onChange={(e) => applyFilters({ ...filters, tier: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               >
                 <option value="">All tiers</option>
                 {TIERS.map((t) => (
@@ -330,11 +330,11 @@ export default function InventoryPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs text-slate-500">Temperature</label>
+              <label className="mb-1 block text-xs text-zinc-500">Temperature</label>
               <select
                 value={filters.temperature}
                 onChange={(e) => applyFilters({ ...filters, temperature: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               >
                 <option value="">All temps</option>
                 {TEMPERATURES.map((t) => (
@@ -349,7 +349,7 @@ export default function InventoryPage() {
             <div className="mt-3">
               <button
                 onClick={() => applyFilters(EMPTY_FILTERS)}
-                className="text-xs text-cyan-400 hover:text-cyan-300"
+                className="text-xs text-lime-400 hover:text-lime-300"
               >
                 Clear filters
               </button>
@@ -409,10 +409,10 @@ export default function InventoryPage() {
                 {filtered.map((a) => (
                   <TR key={a.id} className="cursor-default">
                     <TD>
-                      <Link href={`/dashboard/inventory/${a.id}`} className="font-medium text-cyan-300 hover:text-cyan-200">
+                      <Link href={`/dashboard/inventory/${a.id}`} className="font-medium text-lime-300 hover:text-lime-200">
                         {a.name}
                       </Link>
-                      <div className="text-xs text-slate-600">{a.external_id || a.region || a.provider}</div>
+                      <div className="text-xs text-zinc-600">{a.external_id || a.region || a.provider}</div>
                     </TD>
                     <TD>{accountName[a.account_id] || '—'}</TD>
                     <TD>
@@ -429,11 +429,11 @@ export default function InventoryPage() {
                         {Object.entries(a.tags ?? {})
                           .slice(0, 3)
                           .map(([k, v]) => (
-                            <span key={k} className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] text-slate-400">
+                            <span key={k} className="rounded bg-zinc-800 px-1.5 py-0.5 text-[10px] text-zinc-400">
                               {k}:{v}
                             </span>
                           ))}
-                        {Object.keys(a.tags ?? {}).length === 0 && <span className="text-xs text-slate-600">untagged</span>}
+                        {Object.keys(a.tags ?? {}).length === 0 && <span className="text-xs text-zinc-600">untagged</span>}
                       </div>
                     </TD>
                   </TR>
@@ -460,23 +460,23 @@ export default function InventoryPage() {
         }
       >
         <div className="space-y-4">
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-zinc-400">
             Saves the current filter set (account, type, tier, temperature) so you can re-apply it in one click.
           </p>
           <div>
-            <label className="mb-1 block text-xs text-slate-500">View name</label>
+            <label className="mb-1 block text-xs text-zinc-500">View name</label>
             <input
               value={viewName}
               onChange={(e) => setViewName(e.target.value)}
               placeholder="e.g. Cold buckets on AWS"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
             />
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
-            <input type="checkbox" checked={viewDefault} onChange={(e) => setViewDefault(e.target.checked)} className="accent-cyan-500" />
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
+            <input type="checkbox" checked={viewDefault} onChange={(e) => setViewDefault(e.target.checked)} className="accent-lime-500" />
             Make this my default view
           </label>
-          <div className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-500">
+          <div className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-xs text-zinc-500">
             Current filters:{' '}
             {hasActiveFilters
               ? [

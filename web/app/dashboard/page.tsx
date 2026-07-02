@@ -114,7 +114,7 @@ export default function DashboardOverviewPage() {
         <Card className="border-rose-500/30">
           <CardBody>
             <h2 className="text-base font-semibold text-rose-300">Could not load dashboard</h2>
-            <p className="mt-1 text-sm text-slate-400">{error}</p>
+            <p className="mt-1 text-sm text-zinc-400">{error}</p>
             <Button className="mt-4" variant="secondary" onClick={load}>
               Retry
             </Button>
@@ -134,8 +134,8 @@ export default function DashboardOverviewPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-100">Executive Overview</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-100">Executive Overview</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Storage spend, recoverable savings, and recovery momentum across your cloud estate.
           </p>
         </div>
@@ -196,8 +196,8 @@ export default function DashboardOverviewPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-slate-200">Recovery progress</h2>
-                <span className="text-xs text-slate-500">
+                <h2 className="text-sm font-semibold text-zinc-200">Recovery progress</h2>
+                <span className="text-xs text-zinc-500">
                   {fmtMoney(kpis.realized_monthly)} realized of {fmtMoney(kpis.total_recoverable)} recoverable
                 </span>
               </div>
@@ -210,11 +210,11 @@ export default function DashboardOverviewPage() {
           {/* Trend chart */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Spend &amp; recoverable trend</h2>
+              <h2 className="text-sm font-semibold text-zinc-200">Spend &amp; recoverable trend</h2>
             </CardHeader>
             <CardBody>
               {points.length === 0 ? (
-                <p className="py-8 text-center text-sm text-slate-500">No trend data recorded yet.</p>
+                <p className="py-8 text-center text-sm text-zinc-500">No trend data recorded yet.</p>
               ) : (
                 <TrendChart points={points} />
               )}
@@ -225,15 +225,15 @@ export default function DashboardOverviewPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-slate-200">Top recovery opportunities</h2>
-                <Link href="/dashboard/worksheet" className="text-xs text-cyan-400 hover:text-cyan-300">
+                <h2 className="text-sm font-semibold text-zinc-200">Top recovery opportunities</h2>
+                <Link href="/dashboard/worksheet" className="text-xs text-lime-400 hover:text-lime-300">
                   View worksheet →
                 </Link>
               </div>
             </CardHeader>
             <CardBody className="p-0">
               {opps.length === 0 ? (
-                <p className="px-5 py-8 text-center text-sm text-slate-500">
+                <p className="px-5 py-8 text-center text-sm text-zinc-500">
                   No opportunities yet. Run an analysis to surface mis-tier, snapshot, and orphan savings.
                 </p>
               ) : (
@@ -252,20 +252,20 @@ export default function DashboardOverviewPage() {
                     {opps.map((o, i) => (
                       <TR key={o.id ?? i}>
                         <TD className="max-w-xs">
-                          <span className="font-medium text-slate-200">{o.title || 'Untitled opportunity'}</span>
+                          <span className="font-medium text-zinc-200">{o.title || 'Untitled opportunity'}</span>
                           {o.target_tier && (
-                            <span className="ml-2 text-xs text-slate-500">→ {o.target_tier}</span>
+                            <span className="ml-2 text-xs text-zinc-500">→ {o.target_tier}</span>
                           )}
                         </TD>
                         <TD>
                           <Badge tone="cyan">{o.finding_type || o.action_type || 'finding'}</Badge>
                         </TD>
                         <TD className="text-right font-medium text-emerald-300">{fmtMoney(o.monthly_savings, 2)}</TD>
-                        <TD className="text-right text-slate-300">{fmtMoney(o.annual_savings)}</TD>
+                        <TD className="text-right text-zinc-300">{fmtMoney(o.annual_savings)}</TD>
                         <TD className="text-center">
                           <Badge tone={riskTone(o.risk_score)}>{Math.round(Number(o.risk_score ?? 0))}</Badge>
                         </TD>
-                        <TD className="text-right tabular-nums text-slate-300">
+                        <TD className="text-right tabular-nums text-zinc-300">
                           {Math.round(Number(o.priority_score ?? 0))}
                         </TD>
                       </TR>
@@ -287,13 +287,13 @@ function RecoveryBar({ realized, recoverable }: { realized?: number; recoverable
   const pct = rec > 0 ? Math.min(100, (real / rec) * 100) : 0
   return (
     <div>
-      <div className="h-4 w-full overflow-hidden rounded-full bg-slate-800">
+      <div className="h-4 w-full overflow-hidden rounded-full bg-zinc-800">
         <div
-          className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-cyan-400 transition-all"
+          className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-lime-400 transition-all"
           style={{ width: `${pct}%` }}
         />
       </div>
-      <div className="mt-2 flex justify-between text-xs text-slate-500">
+      <div className="mt-2 flex justify-between text-xs text-zinc-500">
         <span className="text-emerald-300">{pct.toFixed(1)}% realized</span>
         <span>{fmtMoney(rec)} target</span>
       </div>
@@ -365,7 +365,7 @@ function TrendChart({ points }: { points: TrendPoint[] }) {
       </svg>
       <div className="mt-2 flex flex-wrap gap-4">
         {series.map((s) => (
-          <div key={s.key} className="flex items-center gap-1.5 text-xs text-slate-400">
+          <div key={s.key} className="flex items-center gap-1.5 text-xs text-zinc-400">
             <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: s.color }} />
             {s.label}
           </div>

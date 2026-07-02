@@ -195,8 +195,8 @@ export default function RealizedPage() {
     <div className="space-y-6">
       <header className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Realized Savings</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Realized Savings</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Track booked savings against modeled projections and measure attainment.
           </p>
         </div>
@@ -232,29 +232,29 @@ export default function RealizedPage() {
 
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Modeled vs Realized</h2>
+              <h2 className="text-sm font-semibold text-zinc-200">Modeled vs Realized</h2>
             </CardHeader>
             <CardBody className="space-y-4">
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs text-slate-400">
+                <div className="flex items-center justify-between text-xs text-zinc-400">
                   <span>Modeled monthly</span>
-                  <span className="tabular-nums text-cyan-300">{money2(modeled)}</span>
+                  <span className="tabular-nums text-lime-300">{money2(modeled)}</span>
                 </div>
-                <div className="h-3 w-full overflow-hidden rounded-full bg-slate-800">
-                  <div className="h-full rounded-full bg-cyan-500/70" style={{ width: `${(modeled / maxBar) * 100}%` }} />
+                <div className="h-3 w-full overflow-hidden rounded-full bg-zinc-800">
+                  <div className="h-full rounded-full bg-lime-500/70" style={{ width: `${(modeled / maxBar) * 100}%` }} />
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs text-slate-400">
+                <div className="flex items-center justify-between text-xs text-zinc-400">
                   <span>Realized monthly</span>
                   <span className="tabular-nums text-emerald-300">{money2(realized)}</span>
                 </div>
-                <div className="h-3 w-full overflow-hidden rounded-full bg-slate-800">
+                <div className="h-3 w-full overflow-hidden rounded-full bg-zinc-800">
                   <div className="h-full rounded-full bg-emerald-500/70" style={{ width: `${(realized / maxBar) * 100}%` }} />
                 </div>
               </div>
-              <div className="flex items-center gap-2 border-t border-slate-800 pt-3 text-xs text-slate-500">
-                <span className="inline-block h-2 w-2 rounded-full bg-cyan-500/70" /> Modeled
+              <div className="flex items-center gap-2 border-t border-zinc-800 pt-3 text-xs text-zinc-500">
+                <span className="inline-block h-2 w-2 rounded-full bg-lime-500/70" /> Modeled
                 <span className="ml-3 inline-block h-2 w-2 rounded-full bg-emerald-500/70" /> Realized
                 <span className="ml-auto">Records: {records.length}</span>
               </div>
@@ -263,18 +263,18 @@ export default function RealizedPage() {
 
           <Card>
             <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-              <h2 className="text-sm font-semibold text-slate-200">Realized records</h2>
+              <h2 className="text-sm font-semibold text-zinc-200">Realized records</h2>
               <div className="flex flex-wrap items-center gap-2">
                 <input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search action or cycle…"
-                  className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                  className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
                 />
                 <select
                   value={varianceFilter}
                   onChange={(e) => setVarianceFilter(e.target.value as typeof varianceFilter)}
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                 >
                   <option value="all">All variance</option>
                   <option value="over">Over model</option>
@@ -309,14 +309,14 @@ export default function RealizedPage() {
                       const v = num(r.variance)
                       return (
                         <TR key={r.id}>
-                          <TD className="text-slate-200">{actionTitle.get(r.action_id) || r.action_id.slice(0, 8)}</TD>
-                          <TD>{r.cycle_id ? (cycleName.get(r.cycle_id) || '—') : <span className="text-slate-600">Unassigned</span>}</TD>
-                          <TD className="text-right tabular-nums text-cyan-300">{money2(r.modeled_monthly)}</TD>
+                          <TD className="text-zinc-200">{actionTitle.get(r.action_id) || r.action_id.slice(0, 8)}</TD>
+                          <TD>{r.cycle_id ? (cycleName.get(r.cycle_id) || '—') : <span className="text-zinc-600">Unassigned</span>}</TD>
+                          <TD className="text-right tabular-nums text-lime-300">{money2(r.modeled_monthly)}</TD>
                           <TD className="text-right tabular-nums text-emerald-300">{money2(r.realized_monthly)}</TD>
                           <TD className="text-right tabular-nums">
                             <Badge tone={v >= 0 ? 'green' : 'rose'}>{v >= 0 ? '+' : ''}{money2(v)}</Badge>
                           </TD>
-                          <TD className="text-slate-400">{fmtDate(r.realized_at)}</TD>
+                          <TD className="text-zinc-400">{fmtDate(r.realized_at)}</TD>
                         </TR>
                       )
                     })}
@@ -342,11 +342,11 @@ export default function RealizedPage() {
         <div className="space-y-4">
           {formError && <p className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">{formError}</p>}
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Recovery action</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Recovery action</span>
             <select
               value={form.action_id}
               onChange={(e) => onPickAction(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               <option value="">Select an action…</option>
               {actions.map((a) => (
@@ -355,11 +355,11 @@ export default function RealizedPage() {
             </select>
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Cycle (optional)</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Cycle (optional)</span>
             <select
               value={form.cycle_id}
               onChange={(e) => setForm((f) => ({ ...f, cycle_id: e.target.value }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               <option value="">Unassigned</option>
               {cycles.map((c) => (
@@ -369,39 +369,39 @@ export default function RealizedPage() {
           </label>
           <div className="grid grid-cols-2 gap-3">
             <label className="block">
-              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Modeled monthly</span>
+              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Modeled monthly</span>
               <input
                 type="number"
                 step="0.01"
                 value={form.modeled_monthly}
                 onChange={(e) => setForm((f) => ({ ...f, modeled_monthly: e.target.value }))}
                 placeholder="0.00"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               />
             </label>
             <label className="block">
-              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Realized monthly</span>
+              <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Realized monthly</span>
               <input
                 type="number"
                 step="0.01"
                 value={form.realized_monthly}
                 onChange={(e) => setForm((f) => ({ ...f, realized_monthly: e.target.value }))}
                 placeholder="0.00"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               />
             </label>
           </div>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Realized at (optional)</span>
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Realized at (optional)</span>
             <input
               type="date"
               value={form.realized_at}
               onChange={(e) => setForm((f) => ({ ...f, realized_at: e.target.value }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             />
           </label>
           {form.modeled_monthly !== '' && form.realized_monthly !== '' && (
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-zinc-500">
               Variance: <span className={num(form.realized_monthly) - num(form.modeled_monthly) >= 0 ? 'text-emerald-300' : 'text-rose-300'}>
                 {num(form.realized_monthly) - num(form.modeled_monthly) >= 0 ? '+' : ''}{money2(num(form.realized_monthly) - num(form.modeled_monthly))}
               </span>

@@ -25,16 +25,16 @@ export function Modal({ open, onClose, title, children, footer, className = '' }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onClick={onClose} />
-      <div className={`relative z-10 w-full max-w-lg rounded-xl border border-slate-800 bg-slate-900 shadow-2xl ${className}`}>
+      <div className="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm" onClick={onClose} />
+      <div className={`relative z-10 w-full max-w-lg rounded-xl border border-zinc-800 bg-zinc-900 shadow-2xl ${className}`}>
         {title != null && (
-          <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
-            <h2 className="text-base font-semibold text-slate-100">{title}</h2>
-            <button onClick={onClose} className="text-slate-500 hover:text-slate-200" aria-label="Close">✕</button>
+          <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
+            <h2 className="text-base font-semibold text-zinc-100">{title}</h2>
+            <button onClick={onClose} className="text-zinc-500 hover:text-zinc-200" aria-label="Close">✕</button>
           </div>
         )}
         <div className="px-5 py-4">{children}</div>
-        {footer && <div className="flex justify-end gap-2 border-t border-slate-800 px-5 py-4">{footer}</div>}
+        {footer && <div className="flex justify-end gap-2 border-t border-zinc-800 px-5 py-4">{footer}</div>}
       </div>
     </div>
   )

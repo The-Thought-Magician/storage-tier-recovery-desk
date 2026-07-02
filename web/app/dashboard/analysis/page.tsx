@@ -173,8 +173,8 @@ export default function AnalysisPage() {
     <div className="space-y-6">
       <header className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Analysis Runs</h1>
-          <p className="mt-1 text-sm text-slate-500">Run all detectors, review findings, and diff against the prior run.</p>
+          <h1 className="text-xl font-semibold text-zinc-100">Analysis Runs</h1>
+          <p className="mt-1 text-sm text-zinc-500">Run all detectors, review findings, and diff against the prior run.</p>
         </div>
         <Button onClick={() => void runNow()} disabled={running || loading}>
           {running ? 'Running detectors…' : 'Run analysis now'}
@@ -209,7 +209,7 @@ export default function AnalysisPage() {
           {diff && (diffNew + diffResolved + diffChanged > 0) && (
             <Card>
               <CardHeader>
-                <h2 className="text-sm font-semibold text-slate-200">Re-analysis diff (latest two runs)</h2>
+                <h2 className="text-sm font-semibold text-zinc-200">Re-analysis diff (latest two runs)</h2>
               </CardHeader>
               <CardBody className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 <DiffColumn title="New" tone="amber" entries={diff.new} />
@@ -222,7 +222,7 @@ export default function AnalysisPage() {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr]">
             <Card className="self-start">
               <CardHeader>
-                <h2 className="text-sm font-semibold text-slate-200">Run history</h2>
+                <h2 className="text-sm font-semibold text-zinc-200">Run history</h2>
               </CardHeader>
               <CardBody className="p-0">
                 {runs.length === 0 ? (
@@ -234,16 +234,16 @@ export default function AnalysisPage() {
                     />
                   </div>
                 ) : (
-                  <ul className="divide-y divide-slate-800/70">
+                  <ul className="divide-y divide-zinc-800/70">
                     {runs.map((r) => (
                       <li key={r.id}>
                         <button
                           onClick={() => void openRun(r.id)}
-                          className={`flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-slate-800/40 ${selectedId === r.id ? 'bg-slate-800/60' : ''}`}
+                          className={`flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-zinc-800/40 ${selectedId === r.id ? 'bg-zinc-800/60' : ''}`}
                         >
                           <div className="min-w-0">
-                            <div className="text-sm text-slate-200">{fmtDateTime(r.created_at)}</div>
-                            <div className="text-xs text-slate-500">{r.findings_count ?? 0} findings · {money(r.total_recoverable_monthly)}/mo</div>
+                            <div className="text-sm text-zinc-200">{fmtDateTime(r.created_at)}</div>
+                            <div className="text-xs text-zinc-500">{r.findings_count ?? 0} findings · {money(r.total_recoverable_monthly)}/mo</div>
                           </div>
                           <Badge tone={statusTone(r.status)} className="capitalize">{r.status}</Badge>
                         </button>
@@ -256,14 +256,14 @@ export default function AnalysisPage() {
 
             <Card>
               <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-                <h2 className="text-sm font-semibold text-slate-200">
+                <h2 className="text-sm font-semibold text-zinc-200">
                   Run findings{detail ? ` — ${fmtDateTime(detail.run.created_at)}` : ''}
                 </h2>
                 {findingTypes.length > 0 && (
                   <select
                     value={typeFilter}
                     onChange={(e) => setTypeFilter(e.target.value)}
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 capitalize focus:border-cyan-500 focus:outline-none"
+                    className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 capitalize focus:border-lime-500 focus:outline-none"
                   >
                     <option value="all">All types</option>
                     {findingTypes.map((t) => (
@@ -306,21 +306,21 @@ export default function AnalysisPage() {
                     <TBody>
                       {visibleFindings.map((f) => (
                         <TR key={f.id}>
-                          <TD className="text-slate-200">
+                          <TD className="text-zinc-200">
                             <div className="font-medium">{f.title}</div>
                             {f.recommended_action && (
-                              <div className="mt-0.5 text-xs text-slate-500">
+                              <div className="mt-0.5 text-xs text-zinc-500">
                                 {f.recommended_action.replace(/_/g, ' ')}{f.target_tier ? ` → ${f.target_tier}` : ''}
                               </div>
                             )}
                           </TD>
-                          <TD className="capitalize text-slate-400">{f.finding_type?.replace(/_/g, ' ')}</TD>
+                          <TD className="capitalize text-zinc-400">{f.finding_type?.replace(/_/g, ' ')}</TD>
                           <TD className="text-right tabular-nums text-emerald-300">{money(f.monthly_savings)}</TD>
-                          <TD className="text-right tabular-nums text-cyan-300">{num(f.priority_score).toFixed(0)}</TD>
+                          <TD className="text-right tabular-nums text-lime-300">{num(f.priority_score).toFixed(0)}</TD>
                           <TD className="text-right tabular-nums">
                             <Badge tone={riskTone(num(f.risk_score))}>{num(f.risk_score).toFixed(0)}</Badge>
                           </TD>
-                          <TD className="text-right tabular-nums text-slate-400">{(num(f.confidence) * (num(f.confidence) <= 1 ? 100 : 1)).toFixed(0)}%</TD>
+                          <TD className="text-right tabular-nums text-zinc-400">{(num(f.confidence) * (num(f.confidence) <= 1 ? 100 : 1)).toFixed(0)}%</TD>
                         </TR>
                       ))}
                     </TBody>
@@ -347,26 +347,26 @@ function DiffColumn({
   showDelta?: boolean
 }) {
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-950/40 p-3">
+    <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 p-3">
       <div className="mb-2 flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">{title}</span>
+        <span className="text-xs font-semibold uppercase tracking-wide text-zinc-400">{title}</span>
         <Badge tone={tone}>{entries.length}</Badge>
       </div>
       {entries.length === 0 ? (
-        <p className="py-3 text-center text-xs text-slate-600">None</p>
+        <p className="py-3 text-center text-xs text-zinc-600">None</p>
       ) : (
         <ul className="space-y-2">
           {entries.slice(0, 8).map((e, i) => (
-            <li key={e.id ?? i} className="rounded-md border border-slate-800/70 bg-slate-900 px-3 py-2">
-              <div className="truncate text-xs text-slate-200">{e.title ?? e.finding_type ?? e.id ?? 'Finding'}</div>
-              <div className="mt-0.5 text-xs text-slate-500">
+            <li key={e.id ?? i} className="rounded-md border border-zinc-800/70 bg-zinc-900 px-3 py-2">
+              <div className="truncate text-xs text-zinc-200">{e.title ?? e.finding_type ?? e.id ?? 'Finding'}</div>
+              <div className="mt-0.5 text-xs text-zinc-500">
                 {showDelta && e.before != null && e.after != null
                   ? `${money(e.before)} → ${money(e.after)}/mo`
                   : `${money(e.monthly_savings)}/mo`}
               </div>
             </li>
           ))}
-          {entries.length > 8 && <li className="px-1 text-xs text-slate-600">+{entries.length - 8} more</li>}
+          {entries.length > 8 && <li className="px-1 text-xs text-zinc-600">+{entries.length - 8} more</li>}
         </ul>
       )}
     </div>

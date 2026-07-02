@@ -61,7 +61,7 @@ const BREAKDOWN_DIMS: { key: keyof Breakdown; title: string }[] = [
 function BreakdownChart({ rows }: { rows: BreakdownRow[] }) {
   const max = useMemo(() => Math.max(1, ...rows.map((r) => Number(r.spend || 0))), [rows])
   if (rows.length === 0) {
-    return <p className="px-5 py-6 text-sm text-slate-600">No data.</p>
+    return <p className="px-5 py-6 text-sm text-zinc-600">No data.</p>
   }
   return (
     <div className="space-y-3 px-5 py-4">
@@ -73,15 +73,15 @@ function BreakdownChart({ rows }: { rows: BreakdownRow[] }) {
         return (
           <div key={rowLabel(r) + i}>
             <div className="mb-1 flex items-center justify-between text-xs">
-              <span className="font-medium text-slate-300">{rowLabel(r)}</span>
-              <span className="tabular-nums text-slate-500">
-                {money(spend)} spend · <span className="text-cyan-300">{money(recoverable)}</span> recoverable
+              <span className="font-medium text-zinc-300">{rowLabel(r)}</span>
+              <span className="tabular-nums text-zinc-500">
+                {money(spend)} spend · <span className="text-lime-300">{money(recoverable)}</span> recoverable
               </span>
             </div>
-            <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-slate-800">
-              <div className="absolute inset-y-0 left-0 rounded-full bg-slate-600" style={{ width: `${spendPct}%` }} />
+            <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-zinc-800">
+              <div className="absolute inset-y-0 left-0 rounded-full bg-zinc-600" style={{ width: `${spendPct}%` }} />
               <div
-                className="absolute inset-y-0 left-0 rounded-full bg-cyan-500"
+                className="absolute inset-y-0 left-0 rounded-full bg-lime-500"
                 style={{ width: `${(spendPct * recPct) / 100}%` }}
               />
             </div>
@@ -187,8 +187,8 @@ export default function ReportsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Reports</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Reports</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Generate spend and recovery reports, export raw data as CSV or JSON, and review cost breakdowns across your
             estate.
           </p>
@@ -219,17 +219,17 @@ export default function ReportsPage() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Report builder</h2>
-            <p className="mt-0.5 text-xs text-slate-500">Choose a scope and generate a summary report.</p>
+            <h2 className="text-sm font-semibold text-zinc-200">Report builder</h2>
+            <p className="mt-0.5 text-xs text-zinc-500">Choose a scope and generate a summary report.</p>
           </CardHeader>
           <CardBody className="space-y-4">
             <div className="flex flex-wrap items-end gap-3">
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Scope</label>
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Scope</label>
                 <select
                   value={scope}
                   onChange={(e) => setScope(e.target.value)}
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                  className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                 >
                   {SCOPES.map((s) => (
                     <option key={s.value} value={s.value}>
@@ -240,14 +240,14 @@ export default function ReportsPage() {
               </div>
               {scope !== 'workspace' && (
                 <div className="flex-1">
-                  <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+                  <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                     {scope === 'account' ? 'Account ID' : 'Cycle ID'}
                   </label>
                   <input
                     value={scopeId}
                     onChange={(e) => setScopeId(e.target.value)}
                     placeholder={`Enter ${scope} id`}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                    className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
                   />
                 </div>
               )}
@@ -267,27 +267,27 @@ export default function ReportsPage() {
                 {reportEntries.length > 0 && (
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                     {reportEntries.map(([k, v]) => (
-                      <div key={k} className="rounded-lg border border-slate-800 bg-slate-950 px-3 py-2">
-                        <div className="text-[11px] uppercase tracking-wide text-slate-500">{k.replace(/_/g, ' ')}</div>
-                        <div className="mt-1 truncate text-sm font-semibold text-slate-100">{String(v ?? '—')}</div>
+                      <div key={k} className="rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2">
+                        <div className="text-[11px] uppercase tracking-wide text-zinc-500">{k.replace(/_/g, ' ')}</div>
+                        <div className="mt-1 truncate text-sm font-semibold text-zinc-100">{String(v ?? '—')}</div>
                       </div>
                     ))}
                   </div>
                 )}
                 {reportSections.map(([k, arr]) => (
                   <div key={k}>
-                    <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">
+                    <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">
                       {k.replace(/_/g, ' ')} ({arr.length})
                     </div>
-                    <div className="rounded-lg border border-slate-800 bg-slate-950 p-2">
-                      <pre className="max-h-48 overflow-auto whitespace-pre-wrap break-words text-xs text-slate-400">
+                    <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-2">
+                      <pre className="max-h-48 overflow-auto whitespace-pre-wrap break-words text-xs text-zinc-400">
                         {JSON.stringify(arr, null, 2)}
                       </pre>
                     </div>
                   </div>
                 ))}
                 {reportEntries.length === 0 && reportSections.length === 0 && (
-                  <pre className="max-h-72 overflow-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs text-slate-400">
+                  <pre className="max-h-72 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 text-xs text-zinc-400">
                     {JSON.stringify(report, null, 2)}
                   </pre>
                 )}
@@ -298,16 +298,16 @@ export default function ReportsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Data exports</h2>
-            <p className="mt-0.5 text-xs text-slate-500">Download raw datasets for offline analysis or sharing.</p>
+            <h2 className="text-sm font-semibold text-zinc-200">Data exports</h2>
+            <p className="mt-0.5 text-xs text-zinc-500">Download raw datasets for offline analysis or sharing.</p>
           </CardHeader>
           <CardBody className="space-y-4">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Dataset</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Dataset</label>
               <select
                 value={exportKind}
                 onChange={(e) => setExportKind(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
               >
                 {EXPORT_KINDS.map((k) => (
                   <option key={k.value} value={k.value}>
@@ -324,8 +324,8 @@ export default function ReportsPage() {
                 {exporting === 'json' ? 'Exporting...' : 'Download JSON'}
               </Button>
             </div>
-            <div className="rounded-lg border border-slate-800 bg-slate-950 px-4 py-3 text-xs text-slate-500">
-              <p className="font-medium text-slate-400">What gets exported</p>
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3 text-xs text-zinc-500">
+              <p className="font-medium text-zinc-400">What gets exported</p>
               <ul className="mt-2 space-y-1">
                 <li>
                   <Badge tone="cyan">worksheet</Badge> ranked recovery actions with savings and status
@@ -345,8 +345,8 @@ export default function ReportsPage() {
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-sm font-semibold text-slate-200">Cost &amp; recoverable breakdown</h2>
-            <p className="mt-0.5 text-xs text-slate-500">Spend (grey) and recoverable share (cyan) by dimension.</p>
+            <h2 className="text-sm font-semibold text-zinc-200">Cost &amp; recoverable breakdown</h2>
+            <p className="mt-0.5 text-xs text-zinc-500">Spend (grey) and recoverable share (cyan) by dimension.</p>
           </div>
           <div className="flex flex-wrap gap-1.5">
             {BREAKDOWN_DIMS.map((d) => (
@@ -355,8 +355,8 @@ export default function ReportsPage() {
                 onClick={() => setActiveDim(d.key)}
                 className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
                   activeDim === d.key
-                    ? 'border-cyan-500/40 bg-cyan-500/10 text-cyan-300'
-                    : 'border-slate-700 bg-slate-950 text-slate-400 hover:text-slate-200'
+                    ? 'border-lime-500/40 bg-lime-500/10 text-lime-300'
+                    : 'border-zinc-700 bg-zinc-950 text-zinc-400 hover:text-zinc-200'
                 }`}
               >
                 {d.title}
@@ -416,10 +416,10 @@ export default function ReportsPage() {
                         const rec = Number(r.recoverable || 0)
                         return (
                           <TR key={rowLabel(r) + i}>
-                            <TD className="font-medium text-slate-200">{rowLabel(r)}</TD>
-                            <TD className="text-right tabular-nums text-slate-300">{money(spend)}</TD>
-                            <TD className="text-right tabular-nums text-cyan-300">{money(rec)}</TD>
-                            <TD className="text-right tabular-nums text-slate-400">
+                            <TD className="font-medium text-zinc-200">{rowLabel(r)}</TD>
+                            <TD className="text-right tabular-nums text-zinc-300">{money(spend)}</TD>
+                            <TD className="text-right tabular-nums text-lime-300">{money(rec)}</TD>
+                            <TD className="text-right tabular-nums text-zinc-400">
                               {spend > 0 ? ((rec / spend) * 100).toFixed(0) : '0'}%
                             </TD>
                           </TR>

@@ -259,8 +259,8 @@ export default function AlertsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Alerts</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Alerts</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Threshold rules watch your recoverable-spend signals and raise alerts when a metric crosses its limit.
             Acknowledge or resolve alerts and tune rules below.
           </p>
@@ -291,18 +291,18 @@ export default function AlertsPage() {
 
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-sm font-semibold text-slate-200">Alert feed</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Alert feed</h2>
           <div className="flex flex-wrap items-center gap-2">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search messages..."
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
             />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               <option value="all">All statuses</option>
               {statuses.map((s) => (
@@ -314,7 +314,7 @@ export default function AlertsPage() {
             <select
               value={severityFilter}
               onChange={(e) => setSeverityFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               <option value="all">All severities</option>
               {severities.map((s) => (
@@ -375,17 +375,17 @@ export default function AlertsPage() {
                   return (
                     <TR key={a.id}>
                       <TD>
-                        <div className="font-medium text-slate-100">{a.message || 'Alert'}</div>
-                        <div className="mt-0.5 text-xs text-slate-500">Rule {a.rule_id || '—'}</div>
+                        <div className="font-medium text-zinc-100">{a.message || 'Alert'}</div>
+                        <div className="mt-0.5 text-xs text-zinc-500">Rule {a.rule_id || '—'}</div>
                       </TD>
                       <TD className="text-center">
                         <Badge tone={severityTone(a.severity)}>{a.severity || 'info'}</Badge>
                       </TD>
-                      <TD className="text-right tabular-nums text-slate-300">{fmtValue(a.value)}</TD>
+                      <TD className="text-right tabular-nums text-zinc-300">{fmtValue(a.value)}</TD>
                       <TD className="text-center">
                         <Badge tone={statusTone(a.status)}>{a.status || 'open'}</Badge>
                       </TD>
-                      <TD className="text-slate-400">{fmtDate(a.created_at)}</TD>
+                      <TD className="text-zinc-400">{fmtDate(a.created_at)}</TD>
                       <TD className="text-right">
                         <div className="flex justify-end gap-2">
                           {!isAck && !isResolved && (
@@ -422,8 +422,8 @@ export default function AlertsPage() {
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-sm font-semibold text-slate-200">Alert rules</h2>
-            <p className="mt-0.5 text-xs text-slate-500">Define which metrics to watch and the thresholds that raise alerts.</p>
+            <h2 className="text-sm font-semibold text-zinc-200">Alert rules</h2>
+            <p className="mt-0.5 text-xs text-zinc-500">Define which metrics to watch and the thresholds that raise alerts.</p>
           </div>
           <Button onClick={openCreateRule} className="px-3 py-1.5 text-xs">
             New rule
@@ -457,20 +457,20 @@ export default function AlertsPage() {
               <TBody>
                 {rules.map((r) => (
                   <TR key={r.id}>
-                    <TD className="font-medium text-slate-100">{r.name || 'Rule'}</TD>
-                    <TD className="text-slate-300">{metricLabel(r.metric)}</TD>
-                    <TD className="text-right tabular-nums text-cyan-300">{fmtValue(r.threshold)}</TD>
+                    <TD className="font-medium text-zinc-100">{r.name || 'Rule'}</TD>
+                    <TD className="text-zinc-300">{metricLabel(r.metric)}</TD>
+                    <TD className="text-right tabular-nums text-lime-300">{fmtValue(r.threshold)}</TD>
                     <TD className="text-center">
                       <button
                         onClick={() => toggleRule(r)}
                         className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
-                          r.enabled ? 'bg-cyan-600' : 'bg-slate-700'
+                          r.enabled ? 'bg-lime-500' : 'bg-zinc-700'
                         }`}
                         aria-label="Toggle rule"
                       >
                         <span
                           className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                            r.enabled ? 'translate-x-4' : 'translate-x-0.5'
+                            r.enabled ? 'tranzinc-x-4' : 'tranzinc-x-0.5'
                           }`}
                         />
                       </button>
@@ -510,20 +510,20 @@ export default function AlertsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="e.g. Recoverable spend spike"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Metric</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Metric</label>
             <select
               value={form.metric}
               onChange={(e) => setForm((f) => ({ ...f, metric: e.target.value }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
             >
               {METRICS.map((m) => (
                 <option key={m.value} value={m.value}>
@@ -533,22 +533,22 @@ export default function AlertsPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Threshold</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Threshold</label>
             <input
               value={form.threshold}
               onChange={(e) => setForm((f) => ({ ...f, threshold: e.target.value }))}
               type="number"
               placeholder="e.g. 1000"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
             />
-            <p className="mt-1 text-xs text-slate-600">Alert raised when the metric crosses this value.</p>
+            <p className="mt-1 text-xs text-zinc-600">Alert raised when the metric crosses this value.</p>
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={form.enabled}
               onChange={(e) => setForm((f) => ({ ...f, enabled: e.target.checked }))}
-              className="h-4 w-4 rounded border-slate-700 bg-slate-950 text-cyan-600 focus:ring-cyan-500"
+              className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 text-lime-600 focus:ring-lime-500"
             />
             Enabled
           </label>
@@ -573,8 +573,8 @@ export default function AlertsPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
-          Delete rule <span className="font-medium text-slate-100">{deletingRule?.name || 'this rule'}</span>? Existing
+        <p className="text-sm text-zinc-300">
+          Delete rule <span className="font-medium text-zinc-100">{deletingRule?.name || 'this rule'}</span>? Existing
           alerts it raised will remain. This cannot be undone.
         </p>
       </Modal>

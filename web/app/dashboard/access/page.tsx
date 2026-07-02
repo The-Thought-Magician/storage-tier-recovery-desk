@@ -58,7 +58,7 @@ function fmtDate(s: string | null): string {
 function cellStyle(value: number, max: number): React.CSSProperties {
   if (max <= 0 || value <= 0) return { background: 'rgb(15 23 42)' }
   const t = Math.min(1, value / max)
-  // cyan-500 = (6,182,212). Blend opacity by intensity.
+  // lime-500 = (6,182,212). Blend opacity by intensity.
   const alpha = 0.08 + t * 0.55
   return { background: `rgba(6, 182, 212, ${alpha.toFixed(3)})` }
 }
@@ -144,8 +144,8 @@ export default function AccessPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-xl font-semibold text-slate-100">Access Patterns</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-semibold text-zinc-100">Access Patterns</h1>
+          <p className="mt-1 text-sm text-zinc-500">
             Read/request activity per asset, classified into temperature bands. Enrich to recompute scores from the latest data.
           </p>
         </div>
@@ -155,7 +155,7 @@ export default function AccessPage() {
       </div>
 
       {enrichMsg && (
-        <div className="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-sm text-cyan-200">{enrichMsg}</div>
+        <div className="rounded-lg border border-lime-500/30 bg-lime-500/10 px-4 py-2.5 text-sm text-lime-200">{enrichMsg}</div>
       )}
 
       {loading ? (
@@ -193,8 +193,8 @@ export default function AccessPage() {
           {/* Heatmap */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Temperature × tier heatmap</h2>
-              <p className="mt-0.5 text-xs text-slate-500">Asset counts by access temperature (rows) and current storage tier (columns).</p>
+              <h2 className="text-sm font-semibold text-zinc-200">Temperature × tier heatmap</h2>
+              <p className="mt-0.5 text-xs text-zinc-500">Asset counts by access temperature (rows) and current storage tier (columns).</p>
             </CardHeader>
             <CardBody>
               {!grid || grid.tiers.length === 0 || grid.temps.length === 0 ? (
@@ -212,9 +212,9 @@ export default function AccessPage() {
                   <table className="border-separate border-spacing-1">
                     <thead>
                       <tr>
-                        <th className="px-2 py-1 text-left text-[11px] font-medium uppercase tracking-wide text-slate-500">temp \ tier</th>
+                        <th className="px-2 py-1 text-left text-[11px] font-medium uppercase tracking-wide text-zinc-500">temp \ tier</th>
                         {grid.tiers.map((tier) => (
-                          <th key={tier} className="px-2 py-1 text-center text-[11px] font-medium uppercase tracking-wide text-slate-400">
+                          <th key={tier} className="px-2 py-1 text-center text-[11px] font-medium uppercase tracking-wide text-zinc-400">
                             {tier}
                           </th>
                         ))}
@@ -232,11 +232,11 @@ export default function AccessPage() {
                               <td
                                 key={tier}
                                 style={cellStyle(cell.count, grid.max)}
-                                className="min-w-[68px] rounded-md border border-slate-800 px-2 py-3 text-center align-middle"
+                                className="min-w-[68px] rounded-md border border-zinc-800 px-2 py-3 text-center align-middle"
                                 title={`${temp} / ${tier}: ${cell.count} assets, ${fmtUsd(cell.cost)}/mo`}
                               >
-                                <div className="text-sm font-semibold tabular-nums text-slate-100">{cell.count}</div>
-                                {cell.cost > 0 && <div className="text-[10px] text-slate-400">{fmtUsd(cell.cost)}</div>}
+                                <div className="text-sm font-semibold tabular-nums text-zinc-100">{cell.count}</div>
+                                {cell.cost > 0 && <div className="text-[10px] text-zinc-400">{fmtUsd(cell.cost)}</div>}
                               </td>
                             )
                           })}
@@ -244,7 +244,7 @@ export default function AccessPage() {
                       ))}
                     </tbody>
                   </table>
-                  <p className="mt-3 text-xs text-slate-500">
+                  <p className="mt-3 text-xs text-zinc-500">
                     Cold/frozen assets sitting in hot tiers (upper-left bias) are prime re-tiering candidates.
                   </p>
                 </div>
@@ -256,18 +256,18 @@ export default function AccessPage() {
           <Card>
             <CardHeader>
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <h2 className="text-sm font-semibold text-slate-200">Access pattern detail</h2>
+                <h2 className="text-sm font-semibold text-zinc-200">Access pattern detail</h2>
                 <div className="flex flex-wrap items-center gap-2">
                   <input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search asset…"
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-cyan-500 focus:outline-none"
+                    className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder-zinc-600 focus:border-lime-500 focus:outline-none"
                   />
                   <select
                     value={tempFilter}
                     onChange={(e) => setTempFilter(e.target.value)}
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-cyan-500 focus:outline-none"
+                    className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 focus:border-lime-500 focus:outline-none"
                   >
                     <option value="">All temperatures</option>
                     {TEMPERATURES.map((t) => (
@@ -327,10 +327,10 @@ export default function AccessPage() {
                     {filtered.map((p) => (
                       <TR key={p.id}>
                         <TD>
-                          <Link href={`/dashboard/inventory/${p.asset_id}`} className="font-medium text-cyan-300 hover:text-cyan-200">
+                          <Link href={`/dashboard/inventory/${p.asset_id}`} className="font-medium text-lime-300 hover:text-lime-200">
                             {p.asset_name || p.asset_id}
                           </Link>
-                          {p.current_tier && <div className="text-xs text-slate-600">tier: {p.current_tier}</div>}
+                          {p.current_tier && <div className="text-xs text-zinc-600">tier: {p.current_tier}</div>}
                         </TD>
                         <TD>
                           <Badge tone={tempTone[p.temperature] ?? 'slate'}>{p.temperature}</Badge>
@@ -341,7 +341,7 @@ export default function AccessPage() {
                         <TD className="text-right tabular-nums">{(p.requests_30d ?? 0).toLocaleString()}</TD>
                         <TD className="text-right tabular-nums">{(p.retrieval_gb_30d ?? 0).toFixed(1)} GB</TD>
                         <TD className="text-right tabular-nums">{p.days_since_access ?? '—'}</TD>
-                        <TD className="text-slate-400">{fmtDate(p.last_access_at)}</TD>
+                        <TD className="text-zinc-400">{fmtDate(p.last_access_at)}</TD>
                       </TR>
                     ))}
                   </TBody>
